@@ -1,0 +1,99 @@
+{
+    "planets" :[
+        
+        {
+            "name": "Mercury",
+            "mass": "3.3011e23",
+            "distance": "5.8e7",
+            "satellites": "0",
+            "moons": [],
+            "radius": "2439.7"
+        },
+        {
+            "name": "Venus",
+            "mass": "4.8675e24",
+            "distance": "1.082e8",
+            "satellites": "0",
+            "moons": [],
+            "radius": "6051"
+        },
+        {
+            "name": "Earth",
+            "mass": "5.972e24",
+            "distance": "1.502e8",
+            "satellites": "1",
+            "moons": [
+                "The Moon"
+            ],
+            "radius": "6378"
+        },
+        {
+            "name": "Mars",
+            "mass": "6.4171e23",
+            "distance": "2.279e8",
+            "satellites": "2",
+            "moons": [
+                "Phobos",
+                "Deimos"
+            ],
+            "radius": "3389.5"
+        },
+        {
+            "name": "Jupiter",
+            "mass": "1.8982e27",
+            "distance": "7.785e8",
+            "satellites": "97",
+            "moons": [
+                "Europa",
+                "Ganymede",
+                "Io",
+                "Callisto",
+                "Amalthea",
+                "Thebe"
+            ],
+            "radius": "69911"
+        },
+        {
+            "name": "Saturn",
+            "mass": "5.6834e26",
+            "distance": "1.434e9",
+            "satellites": "274",
+            "moons": [
+                "Titan",
+                "Rhea",
+                "Mimas",
+                "Enceladus",
+                "Tethys",
+                "Dione",
+                "Lapetus"
+            ],
+            "radius": "58232"
+        },
+        {
+            "name": "Uranus",
+            "mass": "8.681e25",
+            "distance": "2.871e9",
+            "satellites": "28",
+            "moons": [
+                "Miranda",
+                "Ariel",
+                "Umbriel",
+                "Titania",
+                "Oberon"
+            ],
+            "radius": "25362"
+        },
+        {
+            "name": "Neptune",
+            "mass": "1.024e26",
+            "distance": "4.495e9",
+            "satellites": "16",
+            "moons": [
+                "Triton",
+                "Nereid",
+                "Proteus"
+            ],
+            "radius": "24622"
+        }        
+    ]
+}
