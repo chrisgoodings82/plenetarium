@@ -11,10 +11,10 @@ import chat
 from planets import planets
 
 if __name__ == "__main__":
-    planets_instance = planets()
-    chat = chat.chat()
+    planets_instance: planets = planets()
+    chatbot: chat = chat.chat()
     while True:
-        response = chat.get_response(input('You: '))
+        response: str = chatbot.get_response(input('You: '))
         print('Bot: ' + response)
 
         if response == 'Goodbye!':
