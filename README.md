@@ -1,5 +1,5 @@
 
-# SolarSystem
+# Planetarium
 
 This is a console-based application that allows the user to ask questions in order to retrieve facts and information on the planets of the Solar System
 
@@ -53,12 +53,19 @@ The required modules for the project can be loaded using the requirements docume
 > python -m pip install -r requirements.txt
 
 
-## Modules
+## Dependancies
 
-### Tabulate
+### Tabulate-0.9.0
 
 Tabular is a package that neatly presents data into tables [2]. It would have been possible to create my own table formatting class, but as the 
 tabular display was not a key component of the assignment, I chose to use a pre-existing package.
+
+### Rich-14.0.0
+
+Rich allows for links, tables, and exceptions that are printed to the console to be colourised. It uses the following modules as dependencies:
+- markdown-it-py (3.0.0)
+- pygments (2.19.2)
+- mdurl (0.1.2)
 
 
 ## References
