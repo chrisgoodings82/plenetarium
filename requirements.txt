@@ -3,3 +3,7 @@ markdown-it-py==3.0.0
 pygments==2.19.2
 mdurl==0.1.2
 rich==14.0.0 
+sphinx
+sphinx-needs
+sphinx-rtd-theme
+pytest
