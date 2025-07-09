@@ -48,7 +48,7 @@ class chat:
         # Salutations
         response("response | Hello!", ['hello', 'hi', 'sup', 'hey', 'heyo'], single_response=True)
         response("response | I\'m doing fine, and you?", ['how', 'are', 'you', 'doing'], required_words= ['how'])
-        response("response | Goodbye!", ['Goodbye', 'bye', 'quit'], single_response=True)
+        response("response | Goodbye!", ['goodbye', 'bye', 'good bye', ':q', 'quit'], single_response=True)
 
         # Direct Responses
         response(f"response | {long.R_PLUTO}", ['is', 'pluto', 'a', 'planet'], required_words= ['pluto', 'planet'])
@@ -65,73 +65,73 @@ class chat:
 
         # Display data about mercury
         response(f"display | all | all | mercury", ['tell', 'me', 'show', 'display', 'present', 'all', 'everything', 'about', 'relating', 'to', 'mercury'], required_words= ['mercury'])
-        response(f"display | fact | mass | mercury", ['tell', 'me', 'show', 'display', 'present', 'mass', 'weight', 'massive', 'about', 'relating', 'to', 'mercury'], required_words= ['mercury'])
-        response(f"display | fact | distance | mercury", ['tell', 'me', 'show', 'display', 'present', 'distance', 'how', 'far','from', 'the','sun', 'close', 'to', 'is', 'mercury'], required_words= ['mercury'])
-        response(f"display | fact | satellites | mercury", ['tell', 'me', 'show', 'display', 'present', 'how', 'many', 'moons', 'satellitees', 'orbit', 'orbiting', 'mercury'], required_words= ['mercury'])
+        response(f"display | fact | mass | mercury", ['tell', 'me', 'show', 'display', 'present', 'mass', 'weight', 'massive', 'about', 'relating', 'to', 'mercury'], required_words= ['mercury', 'mass'])
+        response(f"display | fact | distance | mercury", ['tell', 'me', 'show', 'display', 'present', 'distance', 'how', 'far','from', 'the','sun', 'close', 'to', 'is', 'mercury'], required_words= ['mercury', 'distance'])
+        response(f"display | fact | satellites | mercury", ['tell', 'me', 'show', 'display', 'present', 'how', 'many', 'moons', 'satellitees', 'orbit', 'orbiting', 'mercury'], required_words= ['mercury', 'satellites'])
         response(f"display | fact | moons | mercury", ['what', 'are', 'list', 'show', 'display', 'the', 'moons', 'of', 'mercury'], required_words= ['mercury', 'moons'])
-        response(f"display | fact | radius | mercury", ['tell', 'me', 'show', 'display', 'present', 'radius', 'width', 'of', 'mercury'], required_words= ['mercury'])
+        response(f"display | fact | radius | mercury", ['tell', 'me', 'show', 'display', 'present', 'radius', 'width', 'of', 'mercury'], required_words= ['mercury', 'radius'])
 
         # Display data about venus
         response(f"display | all | all | venus", ['tell', 'me', 'show', 'display', 'present', 'all', 'everything', 'about', 'relating', 'to', 'venus'], required_words= ['venus'])
-        response(f"display | fact | mass | venus", ['tell', 'me', 'show', 'display', 'present', 'mass', 'weight', 'massive', 'about', 'relating', 'to', 'venus'], required_words= ['venus'])
-        response(f"display | fact | distance | venus", ['tell', 'me', 'show', 'display', 'present', 'distance', 'how', 'far','from', 'the','sun', 'close', 'to', 'is', 'venus'], required_words= ['venus'])
-        response(f"display | fact | satellites | venus", ['tell', 'me', 'show', 'display', 'present', 'how', 'many', 'moons', 'satellitees', 'orbit', 'orbiting', 'venus'], required_words= ['venus'])
+        response(f"display | fact | mass | venus", ['tell', 'me', 'show', 'display', 'present', 'mass', 'weight', 'massive', 'about', 'relating', 'to', 'venus'], required_words= ['venus', 'mass'])
+        response(f"display | fact | distance | venus", ['tell', 'me', 'show', 'display', 'present', 'distance', 'how', 'far','from', 'the','sun', 'close', 'to', 'is', 'venus'], required_words= ['venus', 'distance'])
+        response(f"display | fact | satellites | venus", ['tell', 'me', 'show', 'display', 'present', 'how', 'many', 'moons', 'satellitees', 'orbit', 'orbiting', 'venus'], required_words= ['venus', 'satellites'])
         response(f"display | fact | moons | venus", ['what', 'are', 'list', 'show', 'display', 'the', 'moons', 'of', 'venus'], required_words= ['venus', 'moons'])
-        response(f"display | fact | radius | venus", ['tell', 'me', 'show', 'display', 'present', 'radius', 'width', 'of', 'venus'], required_words= ['venus'])
+        response(f"display | fact | radius | venus", ['tell', 'me', 'show', 'display', 'present', 'radius', 'width', 'of', 'venus'], required_words= ['venus', 'radius'])
 
         # Display data about earth
         response(f"display | all | all | earth", ['tell', 'me', 'show', 'display', 'present', 'all', 'everything', 'about', 'relating', 'to', 'earth'], required_words= ['earth'])
-        response(f"display | fact | mass | earth", ['tell', 'me', 'show', 'display', 'present', 'mass', 'weight', 'massive', 'about', 'relating', 'to', 'earth'], required_words= ['earth'])
-        response(f"display | fact | distance | earth", ['tell', 'me', 'show', 'display', 'present', 'distance', 'how', 'far','from', 'the','sun', 'close', 'to', 'is', 'earth'], required_words= ['earth'])
-        response(f"display | fact | satellites | earth", ['tell', 'me', 'show', 'display', 'present', 'how', 'many', 'moons', 'satellitees', 'orbit', 'orbiting', 'earth'], required_words= ['earth'])
+        response(f"display | fact | mass | earth", ['tell', 'me', 'show', 'display', 'present', 'mass', 'weight', 'massive', 'about', 'relating', 'to', 'earth'], required_words= ['earth', 'mass'])
+        response(f"display | fact | distance | earth", ['tell', 'me', 'show', 'display', 'present', 'distance', 'how', 'far','from', 'the','sun', 'close', 'to', 'is', 'earth'], required_words= ['earth', 'distance'])
+        response(f"display | fact | satellites | earth", ['tell', 'me', 'show', 'display', 'present', 'how', 'many', 'moons', 'satellitees', 'orbit', 'orbiting', 'earth'], required_words= ['earth', 'satellites'])
         response(f"display | fact | moons | earth", ['what', 'are', 'list', 'show', 'display', 'the', 'moons', 'of', 'earth'], required_words= ['earth', 'moons'])
-        response(f"display | fact | radius | earth", ['tell', 'me', 'show', 'display', 'present', 'radius', 'width', 'of', 'earth'], required_words= ['earth'])
+        response(f"display | fact | radius | earth", ['tell', 'me', 'show', 'display', 'present', 'radius', 'width', 'of', 'earth'], required_words= ['earth', 'radius'])
 
         # Display data about mars
         response(f"display | all | all | mars", ['tell', 'me', 'show', 'display', 'present', 'all', 'everything', 'about', 'relating', 'to', 'mars'], required_words= ['mars'])
-        response(f"display | fact | mass | mars", ['tell', 'me', 'show', 'display', 'present', 'mass', 'weight', 'massive', 'about', 'relating', 'to', 'mars'], required_words= ['mars'])
-        response(f"display | fact | distance | mars", ['tell', 'me', 'show', 'display', 'present', 'distance', 'how', 'far','from', 'the','sun', 'close', 'to', 'is', 'mars'], required_words= ['mars'])
-        response(f"display | fact | satellites | mars", ['tell', 'me', 'show', 'display', 'present', 'how', 'many', 'moons', 'satellitees', 'orbit', 'orbiting', 'mars'], required_words= ['mars'])
+        response(f"display | fact | mass | mars", ['tell', 'me', 'show', 'display', 'present', 'mass', 'weight', 'massive', 'about', 'relating', 'to', 'mars'], required_words= ['mars', 'mass'])
+        response(f"display | fact | distance | mars", ['tell', 'me', 'show', 'display', 'present', 'distance', 'how', 'far','from', 'the','sun', 'close', 'to', 'is', 'mars'], required_words= ['mars', 'distance'])
+        response(f"display | fact | satellites | mars", ['tell', 'me', 'show', 'display', 'present', 'how', 'many', 'moons', 'satellitees', 'orbit', 'orbiting', 'mars'], required_words= ['mars', 'satellites'])
         response(f"display | fact | moons | mars", ['what', 'are', 'list', 'show', 'display', 'the', 'moons', 'of', 'mars'], required_words= ['mars', 'moons'])
-        response(f"display | fact | radius | mars", ['tell', 'me', 'show', 'display', 'present', 'radius', 'width', 'of', 'mars'], required_words= ['mars'])
+        response(f"display | fact | radius | mars", ['tell', 'me', 'show', 'display', 'present', 'radius', 'width', 'of', 'mars'], required_words= ['mars', 'radius'])
 
         # Display data about jupiter
         response(f"display | all | all | jupiter", ['tell', 'me', 'show', 'display', 'present', 'all', 'everything', 'about', 'relating', 'to', 'jupiter'], required_words= ['jupiter'])
-        response(f"display | fact | mass | jupiter", ['tell', 'me', 'show', 'display', 'present', 'mass', 'weight', 'massive', 'about', 'relating', 'to', 'jupiter'], required_words= ['jupiter'])
-        response(f"display | fact | distance | jupiter", ['tell', 'me', 'show', 'display', 'present', 'distance', 'how', 'far','from', 'the','sun', 'close', 'to', 'is', 'jupiter'], required_words= ['jupiter'])
-        response(f"display | fact | satellites | jupiter", ['tell', 'me', 'show', 'display', 'present', 'how', 'many', 'moons', 'satellitees', 'orbit', 'orbiting', 'jupiter'], required_words= ['jupiter'])
+        response(f"display | fact | mass | jupiter", ['tell', 'me', 'show', 'display', 'present', 'mass', 'weight', 'massive', 'about', 'relating', 'to', 'jupiter'], required_words= ['jupiter', 'mass'])
+        response(f"display | fact | distance | jupiter", ['tell', 'me', 'show', 'display', 'present', 'distance', 'how', 'far','from', 'the','sun', 'close', 'to', 'is', 'jupiter'], required_words= ['jupiter', 'distance'])
+        response(f"display | fact | satellites | jupiter", ['tell', 'me', 'show', 'display', 'present', 'how', 'many', 'moons', 'satellitees', 'orbit', 'orbiting', 'jupiter'], required_words= ['jupiter', 'satellites'])
         response(f"display | fact | moons | jupiter", ['what', 'are', 'list', 'show', 'display', 'the', 'moons', 'of', 'jupiter'], required_words= ['jupiter', 'moons'])
-        response(f"display | fact | radius | jupiter", ['tell', 'me', 'show', 'display', 'present', 'radius', 'width', 'of', 'jupiter'], required_words= ['jupiter'])
+        response(f"display | fact | radius | jupiter", ['tell', 'me', 'show', 'display', 'present', 'radius', 'width', 'of', 'jupiter'], required_words= ['jupiter', 'radius'])
 
         # Display data about saturn
         response(f"display | all | all | saturn", ['tell', 'me', 'show', 'display', 'present', 'all', 'everything', 'about', 'relating', 'to', 'saturn'], required_words= ['saturn'])
-        response(f"display | fact | mass | saturn", ['tell', 'me', 'show', 'display', 'present', 'mass', 'weight', 'massive', 'about', 'relating', 'to', 'saturn'], required_words= ['saturn'])
-        response(f"display | fact | distance | saturn", ['tell', 'me', 'show', 'display', 'present', 'distance', 'how', 'far','from', 'the','sun', 'close', 'to', 'is', 'saturn'], required_words= ['saturn'])
-        response(f"display | fact | satellites | saturn", ['tell', 'me', 'show', 'display', 'present', 'how', 'many', 'moons', 'satellitees', 'orbit', 'orbiting', 'saturn'], required_words= ['saturn'])
+        response(f"display | fact | mass | saturn", ['what', 'is', 'of', 'tell', 'me', 'show', 'display', 'present', 'mass', 'weight', 'massive', 'about', 'relating', 'to', 'saturn'], required_words= ['saturn', 'mass'])
+        response(f"display | fact | distance | saturn", ['tell', 'me', 'show', 'display', 'present', 'distance', 'how', 'far','from', 'the','sun', 'close', 'to', 'is', 'saturn'], required_words= ['saturn', 'distance'])
+        response(f"display | fact | satellites | saturn", ['tell', 'me', 'show', 'display', 'present', 'how', 'many', 'moons', 'satellitees', 'orbit', 'orbiting', 'saturn'], required_words= ['saturn', 'satellites'])
         response(f"display | fact | moons | saturn", ['what', 'are', 'list', 'show', 'display', 'the', 'moons', 'of', 'saturn'], required_words= ['saturn', 'moons'])
-        response(f"display | fact | radius | saturn", ['tell', 'me', 'show', 'display', 'present', 'radius', 'width', 'of', 'saturn'], required_words= ['saturn'])
+        response(f"display | fact | radius | saturn", ['tell', 'me', 'show', 'display', 'present', 'radius', 'width', 'of', 'saturn'], required_words= ['saturn', 'radius'])
 
         # Display data about uranus
         response(f"display | all | all | uranus", ['tell', 'me', 'show', 'display', 'present', 'all', 'everything', 'about', 'relating', 'to', 'uranus'], required_words= ['uranus'])
-        response(f"display | fact | mass | uranus", ['tell', 'me', 'show', 'display', 'present', 'mass', 'weight', 'massive', 'about', 'relating', 'to', 'uranus'], required_words= ['uranus'])
-        response(f"display | fact | distance | uranus", ['tell', 'me', 'show', 'display', 'present', 'distance', 'how', 'far','from', 'the','sun', 'close', 'to', 'is', 'uranus'], required_words= ['uranus'])
-        response(f"display | fact | satellites | uranus", ['tell', 'me', 'show', 'display', 'present', 'how', 'many', 'moons', 'satellitees', 'orbit', 'orbiting', 'uranus'], required_words= ['uranus'])
+        response(f"display | fact | mass | uranus", ['tell', 'me', 'show', 'display', 'present', 'mass', 'weight', 'massive', 'about', 'relating', 'to', 'uranus'], required_words= ['uranus', 'mass'])
+        response(f"display | fact | distance | uranus", ['tell', 'me', 'show', 'display', 'present', 'distance', 'how', 'far','from', 'the','sun', 'close', 'to', 'is', 'uranus'], required_words= ['uranus', 'distance'])
+        response(f"display | fact | satellites | uranus", ['tell', 'me', 'show', 'display', 'present', 'how', 'many', 'moons', 'satellitees', 'orbit', 'orbiting', 'uranus'], required_words= ['uranus', 'satellites'])
         response(f"display | fact | moons | uranus", ['what', 'are', 'list', 'show', 'display', 'the', 'moons', 'of', 'uranus'], required_words= ['uranus', 'moons'])
-        response(f"display | fact | radius | uranus", ['tell', 'me', 'show', 'display', 'present', 'radius', 'width', 'of', 'uranus'], required_words= ['uranus'])
+        response(f"display | fact | radius | uranus", ['tell', 'me', 'show', 'display', 'present', 'radius', 'width', 'of', 'uranus'], required_words= ['uranus', 'radius'])
 
         # Display data about neptune
         response(f"display | all | all | neptune", ['tell', 'me', 'show', 'display', 'present', 'all', 'everything', 'about', 'relating', 'to', 'neptune'], required_words= ['neptune'])
-        response(f"display | fact | mass | neptune", ['tell', 'me', 'show', 'display', 'present', 'mass', 'weight', 'massive', 'about', 'relating', 'to', 'neptune'], required_words= ['neptune'])
-        response(f"display | fact | distance | neptune", ['tell', 'me', 'show', 'display', 'present', 'distance', 'how', 'far','from', 'the','sun', 'close', 'to', 'is', 'neptune'], required_words= ['neptune'])
-        response(f"display | fact | satellites | neptune", ['tell', 'me', 'show', 'display', 'present', 'how', 'many', 'moons', 'satellitees', 'orbit', 'orbiting', 'neptune'], required_words= ['neptune'])
+        response(f"display | fact | mass | neptune", ['tell', 'me', 'show', 'display', 'present', 'mass', 'weight', 'massive', 'about', 'relating', 'to', 'neptune'], required_words= ['neptune', 'mass'])
+        response(f"display | fact | distance | neptune", ['tell', 'me', 'show', 'display', 'present', 'distance', 'how', 'far','from', 'the','sun', 'close', 'to', 'is', 'neptune'], required_words= ['neptune', 'distance'])
+        response(f"display | fact | satellites | neptune", ['tell', 'me', 'show', 'display', 'present', 'how', 'many', 'moons', 'satellitees', 'orbit', 'orbiting', 'neptune'], required_words= ['neptune', 'satellites'])
         response(f"display | fact | moons | neptune", ['what', 'are', 'list', 'show', 'display', 'the', 'moons', 'of', 'neptune'], required_words= ['neptune', 'moons'])
-        response(f"display | fact | radius | neptune", ['tell', 'me', 'show', 'display', 'present', 'radius', 'width', 'of', 'neptune'], required_words= ['neptune'])
+        response(f"display | fact | radius | neptune", ['tell', 'me', 'show', 'display', 'present', 'radius', 'width', 'of', 'neptune'], required_words= ['neptune', 'radius'])
 
         # Provide comparrison data
         response(f"compare | all | all | all", ['compare', 'all', 'everything', 'about', 'relating', 'to', 'all', 'planets'], required_words= ['compare', 'all', 'planets'])
         response(f"compare | fact | mass | all", ['compare', 'mass', 'weight', 'how', 'massive', 'of', 'all', 'planets'], required_words= ['compare', 'mass', 'planets'])
         response(f"compare | fact | distance | all", ['compare', 'distance', 'how', 'far','from', 'the','sun', 'of', 'all', 'planets'], required_words= ['compare', 'distance', 'planets'])
-        response(f"compare | fact | satellites | all", ['compare', 'satellitees', 'of', 'all', 'planets'], required_words= ['compare', 'satellites', 'planets'])
+        response(f"compare | fact | satellites | all", ['compare', 'satellitees', 'of', 'all', 'planets'], required_words= ['compare', 'satellites', 'planets', 'satellites'])
         response(f"compare | fact | moons | all", ['compare', 'the', 'moons', 'of', 'all', 'planets'], required_words= ['compare', 'planets', 'moons'])
         response(f"compare | fact | radius | all", ['compare', 'radius', 'of', 'all', 'planets'], required_words= ['compare', 'radius', 'planets'])
 
