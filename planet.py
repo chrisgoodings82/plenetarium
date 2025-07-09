@@ -9,8 +9,8 @@ class planet:
         
         for planet in data['planets']:
             if planet['name'] == name:
-                self.name = planet["name"]
-                self.mass = planet["mass"]
+                self.name: str = planet["name"]
+                self.mass: float = float(planet["mass"])
                 self.distance = planet["distance"]
                 self.satellites = planet["satellites"]
                 self.moons = planet["moons"]

@@ -5,14 +5,14 @@ from planets import planets
 from tabulate import tabulate
 
 class chat:
-    def __init__(self):
+    def __init__(self) -> None:
         self.planet_instance = planets()
 
     # Determine how close the user message is to each predefined message
     # and return the percentage of recognised words in the message.
-    def message_probability(self, user_message, recognised_words, single_response=False, required_words=[]):
-        message_certainty = 0
-        has_required_words = True
+    def message_probability(self, user_message: list[str], recognised_words: list[str], single_response: bool = False, required_words: list[str] = []) -> int:
+        message_certainty: int = 0
+        has_required_words: bool = True
 
         # Count how many words are present in each predefined message
         for word in user_message:
@@ -20,7 +20,7 @@ class chat:
                 message_certainty += 1
 
         # Calculate the percent of recognised words in a user message
-        percentage = float(message_certainty) / float(len(recognised_words))
+        percentage: float = float(message_certainty) / float(len(recognised_words))
 
         for word in required_words:
             if word not in user_message:
@@ -35,11 +35,11 @@ class chat:
 
     # Check the user message against all predefined messages
     # and return the one with the highest probability.    
-    def check_all_messages(self, message):
-        highest_prob_list = {}
+    def check_all_messages(self, message: str) -> str:
+        highest_prob_list: dict = {}
 
         # Helper function to generate a list of the highest probability responses
-        def response(bot_response, list_of_words, single_response=False, required_words=[]):
+        def response(bot_response: str, list_of_words: list[str], single_response: bool = False, required_words: list[str] = []) -> None:
             nonlocal highest_prob_list
             highest_prob_list[bot_response] = self.message_probability(message, list_of_words, single_response, required_words)
 
@@ -135,46 +135,46 @@ class chat:
         response(f"compare | fact | moons | all", ['compare', 'the', 'moons', 'of', 'all', 'planets'], required_words= ['compare', 'planets', 'moons'])
         response(f"compare | fact | radius | all", ['compare', 'radius', 'of', 'all', 'planets'], required_words= ['compare', 'radius', 'planets'])
 
-        best_match = max(highest_prob_list, key=highest_prob_list.get)
+        best_match: str = max(highest_prob_list, key=highest_prob_list.get)
         #print(highest_prob_list)
 
         return long.unknown() if highest_prob_list[best_match] < 1 else best_match                  # End: check_all_messages
 
-    def split_response(self, response):
+    def split_response(self, response: str) -> list[str]:
         return response.split("|")
 
     # Display the data for a planet or all planets
     # If the fact is "all", then all data is displayed, else only the specified fact is displayed.
     # If the planet is "all", then all planets are displayed, else only the specified planet    
-    def display_fact(self, response):
-        split_response_string = self.split_response(response)
-        fact = split_response_string[2].strip()
-        planet = split_response_string[3].strip()
-        output = ""
+    def display_fact(self, response) -> str:
+        split_response_string: list[str] = self.split_response(response)
+        fact: str = split_response_string[2].strip()
+        planet: str = split_response_string[3].strip()
+        output: str = ""
         if fact == "all":           
             if planet == "all":     # Display all data for all planets
                 for item in self.planet_instance.get_all_planets():
                     output += item.display_all_data()
             else:                   # Display all data for a specific planet
-                pl = [p for p in self.planet_instance.get_all_planets() if p.name.lower() == planet.lower()]
-                output += pl[0].display_all_data()
+                planets_output: list[str] = [p for p in self.planet_instance.get_all_planets() if p.name.lower() == planet.lower()]
+                output += planets_output[0].display_all_data()
         else:
             if planet == "all":     # Display a specific fact for all planets
                 for item in self.planet_instance.get_all_planets():
                     output += item.display_fact(fact)
             else:                   # Display a specific fact for a specific planet 
-                pl = self.planet_instance.get_planet(planet)
-                output += pl.display_fact(fact)
+                planets_output: list[str] = self.planet_instance.get_planet(planet)
+                output += planets_output.display_fact(fact)
         return output
 
     # Compare the specified fact for all planets or a specific planet
     # If the fact is "all", then all data is displayed, else only the specified fact   
     # If the planet is "all", then all planets are displayed, else only the specified planet
-    def compare_fact(self, response):
-        split_response_string = self.split_response(response)
-        fact = split_response_string[2].strip()
-        planet = split_response_string[3].strip()
-        planet_list = []
+    def compare_fact(self, response: str) -> str:
+        split_response_string: list[str] = self.split_response(response)
+        fact: str = split_response_string[2].strip()
+        #planet_selection: str = split_response_string[3].strip()
+        planet_list: list = []
         if fact == "all":
             for planet in self.planet_instance.get_all_planets():
                     planet_list.append(planet.export_data())
@@ -192,7 +192,7 @@ class chat:
             return f"\n{tabulate(planet_list, ['Name', f"{fact}{unit}" ], tablefmt='grid')}"
 
     # Parse the response based on the type of response   
-    def response_parser(self, response):
+    def response_parser(self, response: str) -> str:
         if "display" in response:
             return self.display_fact(response)
         if "response" in response:
@@ -202,8 +202,8 @@ class chat:
 
     # Get the response from the user input, split it into words, and check against all messages
     # Return the parsed response as a string
-    def get_response(self, user_input):
-        split_message = re.split(r'\s+|[?.,\';:-]\s*', user_input.lower())
-        response = self.check_all_messages(split_message)
-        parsed_response = self.response_parser(response)
+    def get_response(self, user_input: str) -> str:
+        split_message: list[str] = re.split(r'\s+|[?.,\';:-]\s*', user_input.lower())
+        response:str = self.check_all_messages(split_message)
+        parsed_response: str = self.response_parser(response)
         return parsed_response
