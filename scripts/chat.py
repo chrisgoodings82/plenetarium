@@ -1,7 +1,7 @@
 #chat.py
-import scripts.long_responses as long
+import utilities.long_responses as long
 import re
-from scripts.planets import planets
+from scripts.solar_system import planets
 from tabulate import tabulate
 
 class chat:

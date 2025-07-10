@@ -81,7 +81,7 @@ class planet:
             A formated string containing the fact about the planet.
 
         .. impl::
-            :id: DISPLAY_FACT
+            :id: DISPLAY_PLANET_FACT
             :implements: REQ_01
         """
         initial: str = f"The planet {self.name} "
@@ -121,7 +121,7 @@ class planet:
             A list containing the planet name and the value associated with the fact.
 
         .. impl::
-            :id: GET_RESPONSE
+            :id: EXPORT_PLANET_FACT
             :implements: REQ_08
         """
         if hasattr(self, fact):

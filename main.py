@@ -8,7 +8,7 @@ allow for specific information to be displayed.
 
 import sys
 import scripts.chat as chat
-from scripts.planets import planets
+from scripts.solar_system import planets
 
 if __name__ == "__main__":
     planets_instance: planets = planets()
