@@ -51,3 +51,5 @@ need_extra_links = [
         "outgoing": "tests"
     }
 ]
+
+autodoc_typehints = "description"

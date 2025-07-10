@@ -9,8 +9,8 @@ def test_unknown():
     """Checks that a random resonse can be generated
 
     .. test::
-        :id: TEST_001
-        :tests: REQ_01
+        :id: TTC001
+        :tests: REQ001
     """
     sample_strings = ['response | Could you please re-phrase that?',
             'response | I\'m not quite sure what you mean...',
