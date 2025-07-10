@@ -1,6 +1,6 @@
 from contextlib import nullcontext as does_not_raise
 import pytest
-import scripts.long_responses as long
+import utilities.long_responses as long
 
 Expectation = pytest.RaisesExc | does_not_raise
 
