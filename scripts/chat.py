@@ -135,7 +135,7 @@ class chat:
 
         .. impl::
             :id: GET_RESPONSE
-            :implements: REQ_08
+            :implements: REQ001
         """
         split_message: list[str] = re.split(r'\s+|[?.,\';:-]\s*', user_input.lower())
         response:str = long.check_all_messages(split_message)
