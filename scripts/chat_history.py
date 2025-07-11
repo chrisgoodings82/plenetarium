@@ -22,6 +22,7 @@ class chat_history(i_chat_history):
         """Initialises the Chat History log and sets the initial size to 10 entries.
 
         .. impl::
+            :id: CHH_INIT_CHAT_HISTORY
             :implements: REQ001
             :tests: TTC001
         """
@@ -35,6 +36,7 @@ class chat_history(i_chat_history):
         :rtype: Queue[dict[str, str]].
 
         .. impl::
+            :id: CHH_GET_CHAT_HISTORY
             :implements: REQ001
             :tests: TTC001
         """
@@ -46,6 +48,7 @@ class chat_history(i_chat_history):
         :param dict[str, str] chat_exchange: The chat exchange message to be stored.
 
         .. impl::
+            :id: CHH_UPDATE_CHAT_HISTORY
             :implements: REQ001
             :tests: TTC001
         """
@@ -57,6 +60,7 @@ class chat_history(i_chat_history):
         """Clears the entire chat history.
 
         .. impl::
+            :id: CHH_PURGE_CHAT
             :implements: REQ001
             :tests: TTC001
         """
@@ -70,6 +74,7 @@ class chat_history(i_chat_history):
         :rtype: int.
 
         .. impl::
+            :id: CHH_GET_CHAT_HISTORY_LIMIT
             :implements: REQ001
             :tests: TTC001
         """
@@ -81,6 +86,7 @@ class chat_history(i_chat_history):
         :param int limit: The length of the chat history to be retained
 
         .. impl::
+            :id: CHH_SET_CHAT_HISTORY_LIMIT
             :implements: REQ001
             :tests: TTC001
         """

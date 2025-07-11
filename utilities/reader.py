@@ -18,6 +18,7 @@ class reader(i_reader):
         :raises json.JSONDecodeError: if the JSON format is not correct.
 
         .. impl::
+            :id: RDR_READ
             :implements: REQ001
             :tests: TTC001
         """

@@ -1,6 +1,6 @@
 import scripts.planet as planet
 
-class planets:
+class solar_system:
     """A singleton planets class that has only one instance across the application. 
     A singleton pattern was chosen as there will only ever need to be a single instance
     and it will also allow me to access the planets list data.
