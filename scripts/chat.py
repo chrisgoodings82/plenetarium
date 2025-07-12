@@ -1,8 +1,9 @@
 #chat.py
 import utilities.long_responses as long
 import re
-from scripts.solar_system import planets
+from scripts.solar_system import solar_system
 from tabulate import tabulate
+from scripts.chat_history import chat_history
 
 class chat:
     """Planetarium chatbot
@@ -11,12 +12,30 @@ class chat:
         :id: PLANITARIUM_CHATBOT
         :implements: REQ_01, REQ_02
     """
-    def __init__(self) -> None:
-        self.planet_instance = planets()
-
+    _instance = None
     
-
+    def __new__(cls):
+        """Creates a singleton instance of the chat_history class
+        
+        :return: An instance of the class.
+        :rtype: chat
+        """
+        if cls._instance is None:
+            cls._instance = super(chat, cls).__new__(cls)
+            cls._instance.init_chat()
+        return cls._instance
     
+    def init_chat(self):
+        """Initialises the chat instance and sets up the response parser.
+
+        .. impl::
+            :id: CHAT_INIT_CHAT
+            :implements: REQ001
+            :tests: TTC001
+        """
+        self.chat_history = chat_history()
+        self.solar_system = solar_system()
+
     def get_response(self, user_input: str) -> str:
         """
         Gets the response from the user, sanitises it of special characters, and then splits the sentence

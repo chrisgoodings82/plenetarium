@@ -27,12 +27,12 @@ class solar_system:
             :implements: REQ_08
         """
         if cls._instance is None:
-            cls._instance = super(planets, cls).__new__(cls)
-            cls._instance.init_planets()
+            cls._instance = super(solar_system, cls).__new__(cls)
+            cls._instance.init_solar_system()
 
         return cls._instance
     
-    def init_planets(self) -> None:
+    def init_solar_system(self) -> None:
         """Instantiates all of the planets and stores them to a list that can be globally accessed through the instance
 
         .. impl::

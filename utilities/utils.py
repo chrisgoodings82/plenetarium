@@ -1,6 +1,9 @@
 # utils.py
 from enum import Enum
 import re
+import os
+
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class Action(Enum):
     """An Enum for the Response Actions."""

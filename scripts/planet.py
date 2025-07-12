@@ -1,5 +1,6 @@
 # planet.py
 import json
+import os
 
 class planet:
     """Planet Class
@@ -12,7 +13,9 @@ class planet:
             :implements: REQ_09
     """
     def __init__(self, name: str):
-        with open('planets.json', 'r') as file:
+        ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+        ROOT_DIR = ROOT_DIR.replace('scripts', 'data')
+        with open(ROOT_DIR + '/planets.json', 'r') as file:
             data = json.load(file)
         
         for planet in data['planets']:
