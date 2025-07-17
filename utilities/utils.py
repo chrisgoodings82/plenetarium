@@ -3,7 +3,18 @@ from enum import Enum
 import re
 import os
 
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+def get_absolute_path(filepath: str) -> str:
+    ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+    ROOT_DIR = ROOT_DIR.replace('utilities', filepath)
+    return ROOT_DIR
+
+# Colours
+ORANGE = 0x006A86E4
+GREEN = 0x00ABCC7D
+GREY = 0x00EDE8EA
+BLACK = 0x00271D18
+BLUE = 0x00EBC299
+    
 
 class Action(Enum):
     """An Enum for the Response Actions."""

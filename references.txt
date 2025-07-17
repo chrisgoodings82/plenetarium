@@ -1,0 +1,43 @@
+Plannets
+========
+[1] Mercury: By NASA/Johns Hopkins University Applied Physics Laboratory/Arizona State University/Carnegie Institution of Washington - https://photojournal.jpl.nasa.gov/catalog/PIA11364, Public Domain, https://commons.wikimedia.org/w/index.php?curid=83618472
+[2] Venus: By NASA/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington - http://photojournal.jpl.nasa.gov/catalog/PIA10124, Public Domain, https://commons.wikimedia.org/w/index.php?curid=2450357
+[3] Earth: By NASA/Apollo 17 crew; taken by either Harrison Schmitt or Ron Evans - https://web.archive.org/web/20160112123725/http://grin.hq.nasa.gov/ABSTRACTS/GPN-2000-001138.html (image link); see also https://www.nasa.gov/multimedia/imagegallery/image_feature_329.html, Public Domain, https://commons.wikimedia.org/w/index.php?curid=43894484
+[4] Mars: By Kevin Gill from Los Angeles, CA, United States - Mars - August 30 2021, CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=114594182
+[5] Jupiter: By NASA/STSCI (S.T.A.R.S) - https://hubblesite.org/contents/media/images/2024/009/01HPMN3ZGXFN1E0M1W5Y8AVCAM?news=true, Public Domain, https://commons.wikimedia.org/w/index.php?curid=159176801
+[6] Saturn: By NASA / JPL / Space Science Institute - http://www.ciclops.org/view/5155/Saturn-Four-Years-On http://www.nasa.gov/images/content/365640main_PIA11141_full.jpg http://photojournal.jpl.nasa.gov/catalog/PIA11141, Public Domain, https://commons.wikimedia.org/w/index.php?curid=7228953
+[7] Uranus: By Ardenau4 - Own workalso published on Flickr: https://www.flickr.com/photos/197038812@N04/53449450202/, CC0, https://commons.wikimedia.org/w/index.php?curid=143666922
+[8] Neptune: By NASA / Voyager 2 / PDS / OPUS / Ardenau4 - Own workalso published on Flickr: https://www.flickr.com/photos/197038812@N04/53446862462/, CC0, https://commons.wikimedia.org/w/index.php?curid=143615671
+
+Satellites
+==========
+
+[9] The Moon: By Gregory H. Revera, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=11901243
+[10] Phobos: By NASA / JPL-Caltech / University of Arizona - http://photojournal.jpl.nasa.gov/catalog/PIA10368, Public Domain, https://commons.wikimedia.org/w/index.php?curid=5191977
+[11] Deimos: By NASA/JPL/University of Arizona - http://hirise.lpl.arizona.edu/images/2009/deimos/ESP_012068_9000_COLOR5.tif, Public Domain, https://commons.wikimedia.org/w/index.php?curid=27788974
+[12] Europa: By NASA/JPL-Caltech/SwRI/MSSS/Kevin M. Gill - File:Europa - Perijove 45 (53255790801).png, from https://www.flickr.com/photos/kevinmgill/53255790801, CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=154053125
+[13] Ganymede:
+[14] Io: 
+[15] Callisto:
+[16] Amalthea: 
+[17] Thebe:
+[18] Titan:
+[19] Rhea:
+[20] Mimas:
+[21] Enceladus:
+[22] Tethys:
+[23] Dione:
+[24] Lapetus:
+[25] Miranda:
+[26] Ariel:
+[27] Umbriel:
+[28] Titania:
+[29] Oberon:
+[30] Triton:
+[31] Nereid:
+[32] Proteus:
+
+Dwarf Planets
+=============
+
+[33] Pluto: 
