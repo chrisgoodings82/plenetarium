@@ -53,17 +53,33 @@ class app:
         # Configure the grid
         parent.columnconfigure(0, weight = 1)
         parent.columnconfigure(1, weight = 1)
-        parent.columnconfigure(2, weight = 4)
-        parent.columnconfigure(3, weight = 6)
         parent.rowconfigure(0, weight = 1)
         parent.rowconfigure(1, weight = 1)
+        parent.rowconfigure(2, weight = 1)
 
         # Left Output Display
-        text_main_display = Text(parent, height=20, width=50, padx=5, pady=5)
-        text_main_display.grid(column=0, row=0, columnspan=3)
+        text_main_display = Text(parent, height=29, width=60, padx=5, pady=5)
+        text_main_display.grid(column=0, row=0,sticky='new')
 
         # Right Output Display
+        img_main_display = Image.open(utils.get_absolute_path(utils.PLANET_IMAGE)).resize((480, 475))
+        img_main_display = ImageTk.PhotoImage(img_main_display)
 
+        lbl_image_holder = Label(parent, image=img_main_display, width=480, bg='#EDE8EA')
+        lbl_image_holder.image = img_main_display  # Keep a reference to avoid garbage collection
+        lbl_image_holder.grid(column=1, row=0, sticky='new')
+
+        # Chat entry
+        self.chat_entry = ctk.CTkEntry(parent, placeholder_text="Type your question here...", width=400)
+        self.chat_entry.grid(column=0, row=1, columnspan=2, padx=5, pady=5)
+
+        # Chat entry button
+        self.chat_button = ctk.CTkButton(parent, text="Send")
+        self.chat_button.grid(column=0, row=2, padx=5, pady=5, sticky='e')
+
+        # Chat clear button
+        self.chat_clear_button = ctk.CTkButton(parent, text="Clear")
+        self.chat_clear_button.grid(column=1, row=2, padx=5, pady=5, sticky='w')
 
 
 
@@ -79,7 +95,7 @@ class app:
         self.chat_instance = chat()
         self.window = ctk.CTk(fg_color='#EAE8ED')
         self.window.title("Planetarium Chatbot")
-        self.window.geometry("1000x600")
+        self.window.geometry("960x600")
 
         # https://learn.microsoft.com/en-us/windows/win32/api/dwmapi/ne-dwmapi-dwmwindowattribute
         # https://www.youtube.com/watch?v=36PpT4Z22Os&t=43s

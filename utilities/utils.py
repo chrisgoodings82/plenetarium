@@ -8,6 +8,8 @@ def get_absolute_path(filepath: str) -> str:
     ROOT_DIR = ROOT_DIR.replace('utilities', filepath)
     return ROOT_DIR
 
+PLANET_IMAGE = '/data/images/planets/earth.jpg'
+
 # Colours
 ORANGE = 0x006A86E4
 GREEN = 0x00ABCC7D
