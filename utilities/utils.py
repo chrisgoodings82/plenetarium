@@ -8,7 +8,8 @@ def get_absolute_path(filepath: str) -> str:
     ROOT_DIR = ROOT_DIR.replace('utilities', filepath)
     return ROOT_DIR
 
-PLANET_IMAGE = '/data/images/planets/earth.jpg'
+global PLANET_IMAGE
+PLANET_IMAGE = 'data\\images\\planets\\earth.png'
 
 # Colours
 ORANGE = 0x006A86E4
@@ -66,3 +67,4 @@ def sanitize_query(query: str) -> list[str]:
     split_message: list[str] = list(re.split(r'\s+|[?.,\';:-]\s*', query.lower()))
     for item in split_message:
         item = item.strip()
+    return split_message

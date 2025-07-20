@@ -1,6 +1,7 @@
 # planet.py
 import json
 import os
+import scripts.moon as moon
 
 class planet:
     """Planet Class
@@ -24,8 +25,9 @@ class planet:
                 self.mass: float = float(planet["mass"])
                 self.distance: float = float(planet["distance"])
                 self.satellites: int = int(planet["satellites"])
-                self.moons: list[str] = planet["moons"]
+                self.moons: list = planet["moons"]
                 self.radius: float = float(planet["radius"])
+                self.image: str = planet["image"]
                 break
     
     def moons_to_string(self) -> str:
@@ -41,7 +43,7 @@ class planet:
         if len(self.moons) == 0:
             return ""
         elif len(self.moons) == 1:
-            return self.moons[0]
+            return self.moons[0]['name']
         else:
             output: str = ""
             for index, item in enumerate(self.moons):
@@ -112,7 +114,7 @@ class planet:
             :id: EXPORT_DATA
             :implements: REQ_04
         """
-        return [self.name, self. mass, self.distance, self.satellites, self.moons_to_string(), self.radius]
+        return [self.name, self. mass, self.distance, self.satellites, self.moons_to_string(), self.radius, self.image]
     
     def export_fact(self, fact: str) -> list[str]:
         """Provides a list containing the name of the planet and the desired fact.

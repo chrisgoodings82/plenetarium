@@ -8,7 +8,7 @@
             "satellites": 0,
             "moons": [],
             "radius": 2439.7,
-            "image": "mercury.jpg"
+            "image": "mercury.png"
         },
         {
             "name": "Venus",
@@ -17,7 +17,7 @@
             "satellites": 0,
             "moons": [],
             "radius": 6051,
-            "image": "venus.jpg"
+            "image": "venus.png"
         },
         {
             "name": "Earth",
@@ -30,11 +30,11 @@
                     "mass": 7.347e22,
                     "distance": 384784,
                     "radius": 1738.1,
-                    "image": "moon.jpg"
+                    "image": "moon.png"
                 }
             },
             "radius": 6378,
-            "image": "earth.jpg"
+            "image": "earth.png"
         },
         {
             "name": "Mars",
@@ -47,14 +47,14 @@
                     "mass": 1.060e16,
                     "distance": 6000,
                     "radius": 11080,
-                    "image": "phobos.jpg"
+                    "image": "phobos.png"
                 },
                 "deimos": {
                     "name": "Deimos",
                     "mass": 1.51e15,
                     "distance": 23460,
                     "radius": 6270,
-                    "image": "deimos.jpg"
+                    "image": "deimos.png"
                 }
             }, 
             "radius": 3389.5,
@@ -116,21 +116,21 @@
                     "mass": 2.306e21,
                     "distance": 327500,
                     "radius": 763.5,
-                    "image": "rhea.jpg"
+                    "image": "rhea.png"
                 },
                 "mimas": {
                     "name": "Mimas",
                     "mass": 3.75e19,
                     "distance": 186000,
                     "radius": 198.2,
-                    "image": "mimas.jpg"
+                    "image": "mimas.png"
                 },
                 "enceladus": {
                     "name": "Enceladus",
                     "mass": 1.08e20,
                     "distance": 238000,
                     "radius": 252.1,
-                    "image": "encaladus.jpg"
+                    "image": "encaladus.png"
                 }
             },
             "radius": 58232,
@@ -147,21 +147,21 @@
                     "mass": 1.23e21,
                     "distance": 191000,
                     "radius": 578.9,
-                    "image": "ariel.jpg"
+                    "image": "ariel.png"
                 },
                 "umbriel": {
                     "name": "Umbriel",
                     "mass": 1.288e21,
                     "distance": 266000,
                     "radius": 1169.4,
-                    "image": "umbriel.jpg"
+                    "image": "umbriel.png"
                 },
                 "titania": {
                     "name": "Titania",
                     "mass": 3.455e21,
                     "distance": 436000,
                     "radius": 788.4,
-                    "image": "titania.jpg"
+                    "image": "titania.png"
                 },
                 "oberon": {
                     "name": "Oberon",

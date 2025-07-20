@@ -5,6 +5,7 @@ import customtkinter as ctk
 from PIL import ImageTk, Image
 import os
 import utilities.utils as utils
+import scripts.response as response
 
 # If a Windows machine, import the system accessors
 try:
@@ -26,6 +27,25 @@ class app:
             cls._instance = super(app, cls).__new__(cls)
             cls._instance.init_app()
         return cls._instance
+    
+    def submit_chat(self):
+        # Get user input
+        user_input = self.chat_entry.get()
+
+        # Get bot response
+        bot_response = response.get_response(user_input=user_input)
+        self.text_main_display.delete('1.0', END)
+        self.text_main_display.insert(END, bot_response)
+
+        # Set image
+        self.img_main_display = Image.open(utils.get_absolute_path(utils.PLANET_IMAGE)).resize((480, 475))
+        self.img_main_display = ImageTk.PhotoImage(self.img_main_display)
+        self.lbl_image_holder.config(image=self.img_main_display)
+        self.lbl_image_holder.image = self.img_main_display 
+        self.window.mainloop()
+
+        # Update chat history
+        self.chat_instance.update_chat_history({'user': user_input, 'bot': bot_response})
     
     def setup(self, parent):
         """Sets up the application instance and initializes the chat.
@@ -58,23 +78,23 @@ class app:
         parent.rowconfigure(2, weight = 1)
 
         # Left Output Display
-        text_main_display = Text(parent, height=29, width=60, padx=5, pady=5)
-        text_main_display.grid(column=0, row=0,sticky='new')
+        self.text_main_display = Text(parent, height=29, width=60, padx=5, pady=5)
+        self.text_main_display.grid(column=0, row=0,sticky='new')
 
         # Right Output Display
-        img_main_display = Image.open(utils.get_absolute_path(utils.PLANET_IMAGE)).resize((480, 475))
-        img_main_display = ImageTk.PhotoImage(img_main_display)
+        self.img_main_display = Image.open(utils.get_absolute_path(utils.PLANET_IMAGE)).resize((480, 475))
+        self.img_main_display = ImageTk.PhotoImage(self.img_main_display)
 
-        lbl_image_holder = Label(parent, image=img_main_display, width=480, bg='#EDE8EA')
-        lbl_image_holder.image = img_main_display  # Keep a reference to avoid garbage collection
-        lbl_image_holder.grid(column=1, row=0, sticky='new')
+        self.lbl_image_holder = Label(parent, image=self.img_main_display, width=480, bg='#EDE8EA')
+        self.lbl_image_holder.image = self.img_main_display  # Keep a reference to avoid garbage collection
+        self.lbl_image_holder.grid(column=1, row=0, sticky='new')
 
         # Chat entry
         self.chat_entry = ctk.CTkEntry(parent, placeholder_text="Type your question here...", width=400)
         self.chat_entry.grid(column=0, row=1, columnspan=2, padx=5, pady=5)
 
         # Chat entry button
-        self.chat_button = ctk.CTkButton(parent, text="Send")
+        self.chat_button = ctk.CTkButton(parent, text="Send", command=self.submit_chat)
         self.chat_button.grid(column=0, row=2, padx=5, pady=5, sticky='e')
 
         # Chat clear button
@@ -93,6 +113,7 @@ class app:
 
         """
         self.chat_instance = chat()
+        self.image = utils.PLANET_IMAGE
         self.window = ctk.CTk(fg_color='#EAE8ED')
         self.window.title("Planetarium Chatbot")
         self.window.geometry("960x600")
