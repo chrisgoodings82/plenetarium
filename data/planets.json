@@ -3,97 +3,200 @@
         
         {
             "name": "Mercury",
-            "mass": "3.3011e23",
-            "distance": "5.8e7",
-            "satellites": "0",
+            "mass": 3.3011e23,
+            "distance": 5.8e7,
+            "satellites": 0,
             "moons": [],
-            "radius": "2439.7"
+            "radius": 2439.7,
+            "image": "mercury.jpg"
         },
         {
             "name": "Venus",
-            "mass": "4.8675e24",
-            "distance": "1.082e8",
-            "satellites": "0",
+            "mass": 4.8675e24,
+            "distance": 1.082e8,
+            "satellites": 0,
             "moons": [],
-            "radius": "6051"
+            "radius": 6051,
+            "image": "venus.jpg"
         },
         {
             "name": "Earth",
-            "mass": "5.972e24",
-            "distance": "1.502e8",
-            "satellites": "1",
-            "moons": [
-                "The Moon"
-            ],
-            "radius": "6378"
+            "mass": 5.972e24,
+            "distance": 1.502e8,
+            "satellites": 1,
+            "moons": {
+                "moon": {
+                    "name": "Luna",
+                    "mass": 7.347e22,
+                    "distance": 384784,
+                    "radius": 1738.1,
+                    "image": "moon.jpg"
+                }
+            },
+            "radius": 6378,
+            "image": "earth.jpg"
         },
         {
             "name": "Mars",
             "mass": "6.4171e23",
             "distance": "2.279e8",
-            "satellites": "2",
-            "moons": [
-                "Phobos",
-                "Deimos"
-            ],
-            "radius": "3389.5"
+            "satellites": 2,
+            "moons": {
+                "phobos": {
+                    "name": "Phobos",
+                    "mass": 1.060e16,
+                    "distance": 6000,
+                    "radius": 11080,
+                    "image": "phobos.jpg"
+                },
+                "deimos": {
+                    "name": "Deimos",
+                    "mass": 1.51e15,
+                    "distance": 23460,
+                    "radius": 6270,
+                    "image": "deimos.jpg"
+                }
+            }, 
+            "radius": 3389.5,
+            "image": "mars.png"
         },
         {
             "name": "Jupiter",
-            "mass": "1.8982e27",
-            "distance": "7.785e8",
-            "satellites": "97",
-            "moons": [
-                "Europa",
-                "Ganymede",
-                "Io",
-                "Callisto",
-                "Amalthea",
-                "Thebe"
-            ],
-            "radius": "69911"
+            "mass": 1.8982e27,
+            "distance": 7.785e8,
+            "satellites": 97,
+            "moons": {
+                "europa": {
+                    "name": "Europa",
+                    "mass": 4.799e22,
+                    "distance": 417000,
+                    "radius": 1560.8,
+                    "image": "europa.png"
+                },
+                "ganymede": {
+                    "name": "Ganymede",
+                    "mass": 1.48e23,
+                    "distance": 1070400,
+                    "radius": 2634.1,
+                    "image": "ganymede.png"
+                },
+                "io": {
+                    "name": "Io",
+                    "mass": 8.931e22,
+                    "distance": 262000,
+                    "radius": 1821.6,
+                    "image": "io.png"
+                },
+                "callisto": {
+                    "name": "Callisto",
+                    "mass": 1.075e23,
+                    "distance": 1883000,
+                    "radius": 2410.3,
+                    "image": "callisto.png"
+                }
+            },
+            "radius": 69911,
+            "image": "jupiter.png"
         },
         {
             "name": "Saturn",
-            "mass": "5.6834e26",
-            "distance": "1.434e9",
-            "satellites": "274",
-            "moons": [
-                "Titan",
-                "Rhea",
-                "Mimas",
-                "Enceladus",
-                "Tethys",
-                "Dione",
-                "Lapetus"
-            ],
-            "radius": "58232"
+            "mass": 5.6834e26,
+            "distance": 1.434e9,
+            "satellites": 274,
+            "moons":{
+                "titan": {
+                    "name": "Titan",
+                    "mass": 1.48e23,
+                    "distance": 120000,
+                    "radius": 2547.7,
+                    "image": "titan.png"
+                },
+                "rhea": {
+                    "name": "Rhea",
+                    "mass": 2.306e21,
+                    "distance": 327500,
+                    "radius": 763.5,
+                    "image": "rhea.jpg"
+                },
+                "mimas": {
+                    "name": "Mimas",
+                    "mass": 3.75e19,
+                    "distance": 186000,
+                    "radius": 198.2,
+                    "image": "mimas.jpg"
+                },
+                "enceladus": {
+                    "name": "Enceladus",
+                    "mass": 1.08e20,
+                    "distance": 238000,
+                    "radius": 252.1,
+                    "image": "encaladus.jpg"
+                }
+            },
+            "radius": 58232,
+            "image": "saturn.png"
         },
         {
             "name": "Uranus",
-            "mass": "8.681e25",
-            "distance": "2.871e9",
-            "satellites": "28",
-            "moons": [
-                "Miranda",
-                "Ariel",
-                "Umbriel",
-                "Titania",
-                "Oberon"
-            ],
-            "radius": "25362"
+            "mass": 8.681e25,
+            "distance": 2.871e9,
+            "satellites": 28,
+            "moons": {
+                "ariel": {
+                    "name": "Ariel",
+                    "mass": 1.23e21,
+                    "distance": 191000,
+                    "radius": 578.9,
+                    "image": "ariel.jpg"
+                },
+                "umbriel": {
+                    "name": "Umbriel",
+                    "mass": 1.288e21,
+                    "distance": 266000,
+                    "radius": 1169.4,
+                    "image": "umbriel.jpg"
+                },
+                "titania": {
+                    "name": "Titania",
+                    "mass": 3.455e21,
+                    "distance": 436000,
+                    "radius": 788.4,
+                    "image": "titania.jpg"
+                },
+                "oberon": {
+                    "name": "Oberon",
+                    "mass": 3.11e21,
+                    "distance": 583500,
+                    "radius": 761.4,
+                    "image": "oberon.png"
+                }
+            },
+            "radius": 25362,
+            "image": "uranus.png"
         },
         {
             "name": "Neptune",
-            "mass": "1.024e26",
-            "distance": "4.495e9",
-            "satellites": "16",
-            "moons": [
-                "Triton",
-                "Nereid",
-                "Proteus"
-            ],
-            "radius": "24622"
+            "mass": 1.024e26,
+            "distance": 4.495e9,
+            "satellites": 16,
+            "moons": {
+                "triton": {
+                    "name": "Triton",
+                    "mass": 2.139e22,
+                    "distance": 354800,
+                    "radius": 1353.4,
+                    "image": "triton.png"
+                },
+                "proteus": {
+                    "name": "Proteus",
+                    "mass": 1.55e19,
+                    "distance": 117647,
+                    "radius": 209,
+                    "image": "proteus.png"
+                }
+            },
+            "radius": 24622,
+            "image": "neptune.png"
         }        
     ]
 }
