@@ -1,12 +1,6 @@
 #chat.py
-import re
-from scripts.solar_system import solar_system
-import utilities.long_responses as long
-import re
 from scripts.solar_system import planets
-from tabulate import tabulate
 import scripts.response
-import scripts.chat_history
 
 class chat:
 
@@ -28,7 +22,6 @@ class chat:
         self.planet_instance = planets()
         self.user_input = ""
         self.bot_response = ""
-        self.chat_history = scripts.chat_history.chat_history()
 
     def get_user_input(self) -> str:
         """Gets the user input from the console and sanitises it of special characters.
@@ -78,23 +71,3 @@ class chat:
             :tests: TTC001
         """
         return self.bot_response
-    
-    def record_chat(self) -> None:
-        """Records the chat history by appending the user input and bot response to the chat history.
-
-        .. impl::
-            :id: CHT_RECORD_CHAT
-            :implements: REQ001
-            :tests: TTC001
-        """
-        self.chat_history.update_chat_history(dict({self.user_input, self.bot_response}))
-
-    def clear_chat_history(self) -> None:
-        """Clears the chat history.
-
-        .. impl::
-            :id: CHT_CLEAR_CHAT_HISTORY
-            :implements: REQ001
-            :tests: TTC001
-        """
-        self.chat_history.purge_chat()
