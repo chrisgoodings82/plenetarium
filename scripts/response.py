@@ -1,7 +1,7 @@
-import utilities.long_responses as long
-import utilities.utils as utils
 import random
 from tabulate import tabulate
+import utilities.long_responses as long
+import utilities.utils as utils
 import scripts.planet as planet
 import scripts.solar_system as planets
 
@@ -89,7 +89,9 @@ def check_all_messages(message: list[str]) -> str:
     response("response | Goodbye!", ['goodbye', 'bye', 'good bye', ':q', 'quit'], single_response=True)
 
     # Direct Responses
-    response(f"response | {long.R_PLUTO}", ['is', 'pluto', 'a', 'planet'], required_words= ['pluto', 'planet'])
+    response(f"response |p {long.R_PLUTO}", ['is', 'pluto', 'a', 'planet'], required_words= ['pluto', 'planet'])
+    response(f"response |s That's no moon!!!", ['what', 'is', 'the', 'largest', 'moon'], required_words= ['what', 'is', 'the', 'largest', 'moon'])
+    response(f"response |j Full moon, Half moon, New moon...", ['what', 'are', 'the', 'phases','of','the','moon'], required_words= ['what', 'are', 'the', 'phases','of','the','moon'])
     
     # Display all data about all planets
     response(f"display | all | all | all", ['tell', 'me', 'show', 'display', 'present', 'all', 'everything', 'about', 'relating', 'to', 'planets'], required_words= ['planets'])
@@ -195,7 +197,7 @@ def split_response(response: str) -> list[str]:
     return response.split("|")
 
 def set_image(planet: str):
-    utils.PLANET_IMAGE =  f'data\\images\\planets\\{planet}.png'
+    utils.PLANET_IMAGE =  f'data\\images\\{planet}.png'
     pass
 
 def display_fact(response: str) -> str:
@@ -220,20 +222,20 @@ def display_fact(response: str) -> str:
         if planet == "all":     # Display all data for all planets
             for item in planet_instance.get_all_planets():
                 output += item.display_all_data()
-            set_image("earth")
+            set_image("planets\solarsystem")
         else:                   # Display all data for a specific planet
             planets_output: list[str] = [p for p in planet_instance.get_all_planets() if p.name.lower() == planet.lower()]
             output += planets_output[0].display_all_data()
-            set_image(planet.lower())
+            set_image(f'planets\\{planet.lower()}')
     else:
         if planet == "all":     # Display a specific fact for all planets
             for item in planet_instance.get_all_planets():
                 output += item.display_fact(fact)
-            set_image("earth")
+            set_image("planets\solarsystem")
         else:                   # Display a specific fact for a specific planet 
             planets_output: list[str] = planet_instance.get_planet(planet)
             output += planets_output.display_fact(fact)
-            set_image(planet.lower())
+            set_image(f'planets\\{planet.lower()}')
     return output
 
 def compare_fact(response: str) -> str:
@@ -250,15 +252,14 @@ def compare_fact(response: str) -> str:
         :implements: REQ_11, REQ_12
 
     """
-    set_image("earth")
+    set_image("planets\solarsystem")
     split_response_string: list[str] = split_response(response)
     fact: str = split_response_string[2].strip()
     planet_list: list = []
     if fact == "all":
         for planet in planet_instance.get_all_planets():
                 planet_list.append(planet.export_data())
-        
-        return f"\n{tabulate(planet_list, ['Name', 'Mass (kg)', 'Distance (km)', 'Satelites', 'Moons', 'Radius (km)'], tablefmt='grid')}"
+        return f"\n{tabulate(planet_list, ['Name', 'Mass\n(kg)', 'Distance\n(km)', 'Satellites', 'Moons', 'Radius\n(km)'], tablefmt='grid', maxcolwidths=[20,20,20,20,20,20])}"
     else:
         for planet in planet_instance.get_all_planets():
                 if hasattr(planet, fact):
@@ -269,8 +270,16 @@ def compare_fact(response: str) -> str:
             unit = ' (kg)'
         else:
             unit = ''
-        return f"\n{tabulate(planet_list, ['Name', f"{fact}{unit}" ], tablefmt='grid')}"
-
+        return f"\n{tabulate(planet_list, ['Name', f"{fact}{unit}" ], tablefmt='grid', maxcolwidths=[None, 20])}"
+    
+def display_individual_response(response: str) -> str:
+    if response[10] == 'p':
+        set_image("planets\pluto")
+    elif response[10] == 's':
+        set_image("moons\deathstar")
+    elif response[10] == 'j':
+        set_image("moons\halfmoon")
+    return response[12:]
 def response_parser(response: str) -> str:
     """Parses the matched response to determine if the resonse is a direct one, if it
     requires facts to be displayed, or whether the data should be compared and tabulated.
@@ -288,7 +297,7 @@ def response_parser(response: str) -> str:
     if "display" in response:
         return display_fact(response)
     if "response" in response:
-        return response[11:]
+        return display_individual_response(response)
     if "compare" in response:
         return compare_fact(response)
     

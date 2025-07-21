@@ -4,16 +4,17 @@ import os
 import scripts.moon as moon
 
 class planet:
-    """Planet Class
+    
+    def __init__(self, name: str):
+        """Planet Class
 
-        Parameters:
-            name: The name of the planet to be instantiated.
+        :param str name: The name of the planet to be instantiated.
 
         .. impl::
             :id: PLANET
             :implements: REQ_09
-    """
-    def __init__(self, name: str):
+            :tests: TTC001
+        """
         ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
         ROOT_DIR = ROOT_DIR.replace('scripts', 'data')
         with open(ROOT_DIR + '/planets.json', 'r') as file:
@@ -25,9 +26,12 @@ class planet:
                 self.mass: float = float(planet["mass"])
                 self.distance: float = float(planet["distance"])
                 self.satellites: int = int(planet["satellites"])
-                self.moons: list = planet["moons"]
                 self.radius: float = float(planet["radius"])
                 self.image: str = planet["image"]
+                self.moons: list[moon.moon] = []
+                if len(planet['moons']) > 0:
+                    for vMoon in planet['moons']:
+                        self.moons.append(moon.moon(vMoon))
                 break
     
     def moons_to_string(self) -> str:
@@ -42,15 +46,13 @@ class planet:
         """
         if len(self.moons) == 0:
             return ""
-        elif len(self.moons) == 1:
-            return self.moons[0]['name']
         else:
             output: str = ""
             for index, item in enumerate(self.moons):
                 if index == len(self.moons) - 1:
-                    output += item
+                    output += item.name
                 else:
-                    output += item + ", "
+                    output += item.name + ", "
             return output
 
     def display_all_data(self) -> str:

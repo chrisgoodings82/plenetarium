@@ -1,11 +1,11 @@
 # app.py
-from scripts.chat import chat
+import os
 from tkinter import *
 import customtkinter as ctk
 from PIL import ImageTk, Image
-import os
-import utilities.utils as utils
+from scripts.chat import chat
 import scripts.response as response
+import utilities.utils as utils
 
 # If a Windows machine, import the system accessors
 try:
@@ -56,20 +56,26 @@ class app:
         self.chat_instance.update_chat_history({'user': user_input, 'bot': bot_response})
 
     def key_return(self, event):
-        """Initialises the app instance and sets up the chat.
+        """Calls the submit chat function when the enter key is pressed.
 
-        .. impl::
-            :id: APP_INIT_APP
+        :param event event: A key-stroke event for the return key
 
+        :impl: 
+            :id: APP_RETURN_KEY
+            :implements: REQ001
+            :tests: TTC001
         """
         self.submit_chat()
     
     def setup(self, parent):
-        """Sets up the application instance and initializes the chat.
+        """Sets up the UI features.
+
+        :param Tk.window parent: The parent window of the UI.
 
         .. impl::
             :id: APP_SETUP
-
+            :implements: REQ001
+            :tests: TTC001
         """
         # Menu
         menubar = Menu(parent)
@@ -95,7 +101,7 @@ class app:
         parent.rowconfigure(2, weight = 1)
 
         # Left Output Display
-        self.text_main_display = Text(parent, height=29, width=60, padx=5, pady=5, wrap=WORD)
+        self.text_main_display = Text(parent, height=29, width=100, padx=5, pady=5, wrap=WORD)
         self.text_main_display.grid(column=0, row=0,sticky='new')
 
         # Right Output Display
@@ -123,13 +129,14 @@ class app:
 
         .. impl::
             :id: APP_INIT_APP
-
+            :implements: REQ001
+            :tests: TTC001
         """
         self.chat_instance = chat()
         self.image = utils.PLANET_IMAGE
         self.window = ctk.CTk(fg_color='#EAE8ED')
         self.window.title("Planetarium Chatbot")
-        self.window.geometry("960x600")
+        self.window.geometry("1200x600")
 
         # Rob rob42. https://discuss.python.org/t/keyboard-enter-key-to-function-as-a-submit-button/25354
         self.window.bind('<Return>', self.key_return)

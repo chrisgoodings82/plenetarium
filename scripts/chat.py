@@ -1,9 +1,9 @@
 #chat.py
-import utilities.long_responses as long
 import re
-from scripts.solar_system import solar_system
 from tabulate import tabulate
+from scripts.solar_system import solar_system
 from scripts.chat_history import chat_history
+import utilities.long_responses as long
 
 class chat:
     """Planetarium chatbot
