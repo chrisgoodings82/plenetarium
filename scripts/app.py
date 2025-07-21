@@ -28,7 +28,15 @@ class app:
             cls._instance.init_app()
         return cls._instance
     
-    def submit_chat(self):
+    def submit_chat(self) -> None:
+        """
+        Gets the user input, an appropriate response, and updates the display image.
+
+        .. impl::
+            :id: APP_SUBMIT_CHAT
+            :implements: REQ001
+            :tests: TTC001
+        """
         # Get user input
         user_input = self.chat_entry.get()
 
@@ -46,6 +54,15 @@ class app:
 
         # Update chat history
         self.chat_instance.update_chat_history({'user': user_input, 'bot': bot_response})
+
+    def key_return(self, event):
+        """Initialises the app instance and sets up the chat.
+
+        .. impl::
+            :id: APP_INIT_APP
+
+        """
+        self.submit_chat()
     
     def setup(self, parent):
         """Sets up the application instance and initializes the chat.
@@ -78,7 +95,7 @@ class app:
         parent.rowconfigure(2, weight = 1)
 
         # Left Output Display
-        self.text_main_display = Text(parent, height=29, width=60, padx=5, pady=5)
+        self.text_main_display = Text(parent, height=29, width=60, padx=5, pady=5, wrap=WORD)
         self.text_main_display.grid(column=0, row=0,sticky='new')
 
         # Right Output Display
@@ -100,10 +117,6 @@ class app:
         # Chat clear button
         self.chat_clear_button = ctk.CTkButton(parent, text="Clear")
         self.chat_clear_button.grid(column=1, row=2, padx=5, pady=5, sticky='w')
-
-
-
-        pass
     
     def init_app(self):
         """Initialises the app instance and sets up the chat.
@@ -117,6 +130,9 @@ class app:
         self.window = ctk.CTk(fg_color='#EAE8ED')
         self.window.title("Planetarium Chatbot")
         self.window.geometry("960x600")
+
+        # Rob rob42. https://discuss.python.org/t/keyboard-enter-key-to-function-as-a-submit-button/25354
+        self.window.bind('<Return>', self.key_return)
 
         # https://learn.microsoft.com/en-us/windows/win32/api/dwmapi/ne-dwmapi-dwmwindowattribute
         # https://www.youtube.com/watch?v=36PpT4Z22Os&t=43s
@@ -137,5 +153,3 @@ class app:
 
         self.setup(self.window)
         self.window.mainloop()
-
-    
