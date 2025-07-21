@@ -113,15 +113,15 @@ class app:
         self.lbl_image_holder.grid(column=1, row=0, sticky='new')
 
         # Chat entry
-        self.chat_entry = ctk.CTkEntry(parent, placeholder_text="Type your question here...", width=400)
+        self.chat_entry = Entry(parent, placeholder_text="Type your question here...", width=400)
         self.chat_entry.grid(column=0, row=1, columnspan=2, padx=5, pady=5)
 
         # Chat entry button
-        self.chat_button = ctk.CTkButton(parent, text="Send", command=self.submit_chat)
+        self.chat_button = Button(parent, text="Send", command=self.submit_chat)
         self.chat_button.grid(column=0, row=2, padx=5, pady=5, sticky='e')
 
         # Chat clear button
-        self.chat_clear_button = ctk.CTkButton(parent, text="Clear")
+        self.chat_clear_button = Button(parent, text="Clear")
         self.chat_clear_button.grid(column=1, row=2, padx=5, pady=5, sticky='w')
     
     def init_app(self):

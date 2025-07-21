@@ -4,12 +4,6 @@ from scripts.solar_system import solar_system
 import utilities.long_responses as long
 
 class chat:
-    """Planetarium chatbot
-
-    .. impl::
-        :id: PLANITARIUM_CHATBOT
-        :implements: REQ_01, REQ_02
-    """
     _instance = None
     
     def __new__(cls):
@@ -40,15 +34,15 @@ class chat:
         This response is then directed to the most appropriate parser, which returns a formated string with a 
         formal response.
 
-        Args:
-            user_input: The raw input received from the user.
+        :param str user_input: The raw input received from the user.
 
-        Returns:
-            A formated string containing the formal response
+        :return: A formated string containing the formal response
+        :rtype: str
 
         .. impl::
-            :id: GET_RESPONSE
+            :id: CHAT_GET_RESPONSE
             :implements: REQ001
+            :tests: TTC001
         """
         split_message: list[str] = re.split(r'\s+|[?.,\';:-]\s*', user_input.lower())
         response:str = long.check_all_messages(split_message)

@@ -3,11 +3,6 @@ from enum import Enum
 import re
 import os
 
-def get_absolute_path(filepath: str) -> str:
-    ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-    ROOT_DIR = ROOT_DIR.replace('utilities', filepath)
-    return ROOT_DIR
-
 global PLANET_IMAGE
 PLANET_IMAGE = 'data\\images\\planets\\earth.png'
 
@@ -68,3 +63,20 @@ def sanitize_query(query: str) -> list[str]:
     for item in split_message:
         item = item.strip()
     return split_message
+
+def get_absolute_path(filepath: str) -> str:
+    """Gets the absolute path of a given filepath
+    
+    :param str filepath: A filepath
+    
+    :return: The absolute file path
+    :rtype: str
+    
+    .. impl::
+        :id: UTL_GET_ABSOLUTE_PATH
+        :implements: REQ001
+        :tests: TTS001
+    """
+    ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+    ROOT_DIR = ROOT_DIR.replace('utilities', filepath)
+    return ROOT_DIR
