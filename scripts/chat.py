@@ -1,8 +1,6 @@
 #chat.py
 import re
-from tabulate import tabulate
 from scripts.solar_system import solar_system
-from scripts.chat_history import chat_history
 import utilities.long_responses as long
 
 class chat:
@@ -33,7 +31,6 @@ class chat:
             :implements: REQ001
             :tests: TTC001
         """
-        self.chat_history = chat_history()
         self.solar_system = solar_system()
 
     def get_response(self, user_input: str) -> str:
