@@ -1,8 +1,7 @@
 # reader.py
 import json
-from interfaces.i_reader import i_reader
 
-class reader(i_reader):
+class reader:
 
     def read(self, filename: str) -> dict:
         """Reads a JSON file

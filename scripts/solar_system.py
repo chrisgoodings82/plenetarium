@@ -5,10 +5,11 @@ class solar_system:
     A singleton pattern was chosen as there will only ever need to be a single instance
     and it will also allow me to access the planets list data.
 
-        .. impl::
-            :id: PLANETS
-            :implements: REQ_08
-        """
+    .. impl::
+        :id: PLANETS
+        :implements: REQ001
+        :tests: TTC001
+    """
 
     _instance = None
 
@@ -16,28 +17,29 @@ class solar_system:
         """Responsible for creating a new instance of the class.
             [1] https://www.geeksforgeeks.org/python/__new__-in-python/
 
-        Args:
-            cls: The class itself
+        :param class cls: The class itself
 
-        Returns:
-            An instance of the class
+        :return: An instance of the class
+        :rtype: class
 
         .. impl::
-            :id: PLANETS_NEW_INSTANCE
-            :implements: REQ_08
+            :id: SOLAR_SYSTEM_NEW_INSTANCE
+            :implements: REQ001
+            :tests: TTC001
         """
         if cls._instance is None:
-            cls._instance = super(planets, cls).__new__(cls)
-            cls._instance.init_planets()
+            cls._instance = super(solar_system, cls).__new__(cls)
+            cls._instance.init_solar_system()
 
         return cls._instance
     
-    def init_planets(self) -> None:
+    def init_solar_system(self) -> None:
         """Instantiates all of the planets and stores them to a list that can be globally accessed through the instance
 
         .. impl::
-            :id: INIT_PLANETS
-            :implements: REQ_09
+            :id: SOLAR_SYSTEM_INIT_PLANETS
+            :implements: REQ001
+            :tests: TTC001
         """
         self.planets = []
         self.planets.append(planet.planet("Mercury"))
@@ -52,15 +54,15 @@ class solar_system:
     def get_all_planets_by_fact(self, fact: str) -> dict:
         """Gets all planets and the associated fact
 
-        Args:
-            fact: The fact to be displayed (mass, distance, satellites, moons, radius)
+        :param str fact: The fact to be displayed (mass, distance, satellites, moons, radius)
 
-        Returns:
-            A dictionary of each planet and the associated fact value.
+        :return: A dictionary of each planet and the associated fact value.
+        :rtype: dict
 
         .. impl::
-            :id: GET_ALL_PLANETS_BY_FACT
-            :implements: REQ_08
+            :id: SOLAR_SYSTEM_GET_ALL_PLANETS_BY_FACT
+            :implements: REQ001
+            :tests: TTC001
         """
         planet_list: dict = {}
         for local_planet in self.planets:
@@ -76,15 +78,15 @@ class solar_system:
     def get_planet(self, name: str) -> planet:
         """Gets the planet object based on its name.
 
-        Args:
-            name: The name of the planet.
+        :param str name: The name of the planet.
 
-        Returns:
-            The planet object
+        :return: The planet object
+        :rtype: planet
 
         .. impl::
-            :id: GET_PLANET
-            :implements: REQ_05
+            :id: SOLAR_SYSTEM_GET_PLANET
+            :implements: REQ001
+            :tests: TTC001
         """
         for local_planet in self.planets:
             if local_planet.name.lower() == name.lower():
@@ -94,12 +96,13 @@ class solar_system:
     def get_all_planets(self) -> list[planet.planet]:
         """Gets a list of all planets as objects.
 
-        Returns:
-            A list of planet objects.
-
+        :returns: A list of planet objects.
+        :rtype: list[planet]
+        
         .. impl::
-            :id: GET_ALL_PLANETS
-            :implements: REQ_10
+            :id: SOLAR_SYSTEM_GET_ALL_PLANETS
+            :implements: REQ001
+            :tests: TTC001
         """
         return self.planets
 
@@ -107,12 +110,13 @@ class solar_system:
     def get_planet_names(self) -> list[str]:
         """Gets a list of all of the planet names.
 
-        Returns:
-            A list of the planets names.
+        :returns: A list of the planets names.
+        :rtype: list[str]
 
         .. impl::
-            :id: GET_PLANET_NAMES
-            :implements: REQ_08
+            :id: SOLAR_SYSTEM_GET_PLANET_NAMES
+            :implements: REQ001
+            :tests: TTC001
         """
         return [local_planet.name for local_planet in self.planets]
     

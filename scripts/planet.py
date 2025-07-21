@@ -1,18 +1,23 @@
 # planet.py
 import json
+import os
+import scripts.moon as moon
 
 class planet:
-    """Planet Class
+    
+    def __init__(self, name: str):
+        """Planet Class
 
-        Parameters:
-            name: The name of the planet to be instantiated.
+        :param str name: The name of the planet to be instantiated.
 
         .. impl::
-            :id: PLANET
-            :implements: REQ_09
-    """
-    def __init__(self, name: str):
-        with open('planets.json', 'r') as file:
+            :id: PLANET_INIT
+            :implements: REQ001
+            :tests: TTC001
+        """
+        ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+        ROOT_DIR = ROOT_DIR.replace('scripts', 'data')
+        with open(ROOT_DIR + '/planets.json', 'r') as file:
             data = json.load(file)
         
         for planet in data['planets']:
@@ -21,42 +26,44 @@ class planet:
                 self.mass: float = float(planet["mass"])
                 self.distance: float = float(planet["distance"])
                 self.satellites: int = int(planet["satellites"])
-                self.moons: list[str] = planet["moons"]
                 self.radius: float = float(planet["radius"])
+                self.image: str = planet["image"]
+                self.moons: list[moon.moon] = []
+                if len(planet['moons']) > 0:
+                    for vMoon in planet['moons']:
+                        self.moons.append(moon.moon(vMoon))
                 break
     
     def moons_to_string(self) -> str:
         """Converts the list of moons to a formatted string
 
-        Returns:
-            A formated string containing the list of moons
+        :returns: A formated string containing the list of moons
 
         .. impl::
-            :id: MOONS_TO_STRING
-            :implements: REQ_10
+            :id: PLANET_MOONS_TO_STRING
+            :implements: REQ001
+            :tests: TTC001
         """
         if len(self.moons) == 0:
             return ""
-        elif len(self.moons) == 1:
-            return self.moons[0]
         else:
             output: str = ""
             for index, item in enumerate(self.moons):
                 if index == len(self.moons) - 1:
-                    output += item
+                    output += item.name
                 else:
-                    output += item + ", "
+                    output += item.name + ", "
             return output
 
     def display_all_data(self) -> str:
         """Displays all data abot a planet as a formatted string.
 
-        Returns:
-            A formated string containing the data about a planet.
+        :returns: A formated string containing the data about a planet.
 
         .. impl::
-            :id: DISPLAY_ALL_DATA
-            :implements: REQ_08
+            :id: PLANET_DISPLAY_ALL_DATA
+            :implements: REQ001
+            :tests: TTC001
         """
         output: str = f"The planet {self.name} is positioned {self.distance} km from the Sun. It has a mass of {self.mass} kg, a radius of {self.radius} km. "
         output += f"{self.name} has {self.satellites} moon{'s' if int(self.satellites) != 1 else ''}."
@@ -74,15 +81,14 @@ class planet:
     def display_fact(self, fact: str) -> str:
         """Displays a formated string about a specific fact relating to the planet.
 
-        Args:
-            fact: The fact to be displayed (mass, distance, satellites, moons, radius)
+        :param str fact: The fact to be displayed (mass, distance, satellites, moons, radius)
 
-        Returns:
-            A formated string containing the fact about the planet.
+        :return: A formated string containing the fact about the planet.
 
         .. impl::
-            :id: DISPLAY_PLANET_FACT
-            :implements: REQ_01
+            :id: PLANET_DISPLAY_PLANET_FACT
+            :implements: REQ001
+            :tests: TTC001
         """
         initial: str = f"The planet {self.name} "
         match fact:
@@ -102,27 +108,27 @@ class planet:
     def export_data(self) -> list:
         """Provides a list of all facts as raw data.
 
-        Returns:
-            A list of all facts as raw data.
+        :return: A list of all facts as raw data.
 
         .. impl::
-            :id: EXPORT_DATA
-            :implements: REQ_04
+            :id: PLANET_EXPORT_DATA
+            :implements: REQ001
+            :tests: TTC001
         """
-        return [self.name, self. mass, self.distance, self.satellites, self.moons_to_string(), self.radius]
+        return [self.name, self. mass, self.distance, self.satellites, self.moons_to_string(), self.radius, self.image]
     
     def export_fact(self, fact: str) -> list[str]:
         """Provides a list containing the name of the planet and the desired fact.
 
-        Args:
-            fact: The fact to be displayed (mass, distance, satellites, moons, radius)
+        :param str fact: The fact to be displayed (mass, distance, satellites, moons, radius)
 
-        Returns:
-            A list containing the planet name and the value associated with the fact.
+        :return: A list containing the planet name and the value associated with the fact.
+        :rtype: list[str]
 
         .. impl::
-            :id: EXPORT_PLANET_FACT
-            :implements: REQ_08
+            :id: PLANET_EXPORT_PLANET_FACT
+            :implements: REQ001
+            :tests: TTC001
         """
         if hasattr(self, fact):
             return [self.name, self.__getattribute__(fact)]

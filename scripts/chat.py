@@ -1,4 +1,6 @@
 #chat.py
+import re
+from scripts.solar_system import solar_system
 import utilities.long_responses as long
 import re
 from scripts.solar_system import planets
@@ -71,7 +73,7 @@ class chat:
         """Gets the processed response from the bot based on the user input, saving it to the bot_response attribute.
 
         .. impl::
-            :id: GET_RESPONSE
+            :id: CHAT_GET_RESPONSE
             :implements: REQ001
             :tests: TTC001
         """

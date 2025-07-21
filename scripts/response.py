@@ -1,24 +1,27 @@
+import random
+from tabulate import tabulate
+import utilities.long_responses as long
+import utilities.utils as utils
+import scripts.planet as planet
+import scripts.solar_system as planets
 
-
-
-
+planet_instance = planets.solar_system()
 
 def message_probability(user_message: list[str], recognised_words: list[str], single_response: bool = False, required_words: list[str] = []) -> int:
         """Calculate the probability that user entered messages match the desired terms.
 
-        Args:
-            user_message: The user's sanitized message split into a list.
-            recognised_words: A list of terms that the user message is to be matched against.
-            single_response: Will a single term be matched from the recognised words.
-            required_words: A list of the words that must be present in the user message.
+        :param list[str] user_message: The user's sanitized message split into a list.
+        :param list[str] recognised_words: A list of terms that the user message is to be matched against.
+        :param bool single_response: Will a single term be matched from the recognised words.
+        :param list[str] required_words: A list of the words that must be present in the user message.
 
-        Returns:
-            The percentage probability that a user message matches the required words.
+        :return: The percentage probability that a user message matches the required words.
+        :rtype: int
 
         .. impl::
-            :id: MESSAGE_PROBABILITY
-            :implements: REQ_03, REQ_04
-        
+            :id: RESPONSE_MESSAGE_PROBABILITY
+            :implements: REQ001
+            :tests: TTC001
         """
         message_certainty: int = 0
         has_required_words: bool = True
@@ -39,23 +42,21 @@ def message_probability(user_message: list[str], recognised_words: list[str], si
         else:
             return 0
     
-def check_all_messages(self, message: list[str]) -> str:
+def check_all_messages(message: list[str]) -> str:
     """Checks all of the individual user terms to determine which response is the closest match.
         ACTION: DISPLAY, RESPONSE, COMPARE
         DETAIL: ALL, FACT, VALUE (Value is the raw output to be displayed)
         FACT: DISTANCE, MASS, SATELLITES, MOONS, RADIUS, ALL
         PLANET: MERCURY, VENUS, EARTH, MARS, JUPITER, SATURN, URANUS, NEPTUNE, ALL
 
-        Args:
-            message: The sanitised and split list of atomic terms provided by the user.
+        :param list[str] message: The sanitised and split list of atomic terms provided by the user.
 
-        Returns:
-            A structured response as a string, in the format: ACTION | DETAIL | FACT | PLANET or
-            ACTION | DETAIL
+        :return: A structured response as a string, in the format: ACTION | DETAIL | FACT | PLANET or ACTION | DETAIL
 
         .. impl::
-            :id: CHECK_ALL_MESSAGES
-            :implements: REQ_09
+            :id: RESPONSE_CHECK_ALL_MESSAGES
+            :implements: REQ001
+            :tests: TTC001
     """    
     highest_prob_list: dict = {}
 
@@ -63,15 +64,15 @@ def check_all_messages(self, message: list[str]) -> str:
     def response(structured_response: str, list_of_words: list[str], single_response: bool = False, required_words: list[str] = []) -> None:
         """Determines the highest probability response based on the closest match in terms.
 
-        Args:
-            structured_response: The structured response that will be returned if a match is made.
-            list_of_words: These are response flags that will be used to compare the user's terms to.
-            single_response: Identifies if only a single word is to be matched from the list of words.
-            requuired_words: Words that must be included in the user's input for a match to be considered.
+        :param str structured_response: The structured response that will be returned if a match is made.
+        :param kist[str] list_of_words: These are response flags that will be used to compare the user's terms to.
+        :param bool ingle_response: Identifies if only a single word is to be matched from the list of words.
+        :param list[str] required_words: Words that must be included in the user's input for a match to be considered.
 
         .. impl::
-            :id: RESPONSE
-            :implements: REQ_10
+            :id: RESPONSE_RESPONSE
+            :implements: REQ001
+            :tests: TTC001
     """   
         nonlocal highest_prob_list
         highest_prob_list[structured_response] = message_probability(message, list_of_words, single_response, required_words)
@@ -85,7 +86,9 @@ def check_all_messages(self, message: list[str]) -> str:
     response("response | Goodbye!", ['goodbye', 'bye', 'good bye', ':q', 'quit'], single_response=True)
 
     # Direct Responses
-    response(f"response | {R_PLUTO}", ['is', 'pluto', 'a', 'planet'], required_words= ['pluto', 'planet'])
+    response(f"response |p {long.R_PLUTO}", ['is', 'pluto', 'a', 'planet'], required_words= ['pluto', 'planet'])
+    response(f"response |s That's no moon!!!", ['what', 'is', 'the', 'largest', 'moon'], required_words= ['what', 'is', 'the', 'largest', 'moon'])
+    response(f"response |j Full moon, Half moon, New moon...", ['what', 'are', 'the', 'phases','of','the','moon'], required_words= ['what', 'are', 'the', 'phases','of','the','moon'])
     
     # Display all data about all planets
     response(f"display | all | all | all", ['tell', 'me', 'show', 'display', 'present', 'all', 'everything', 'about', 'relating', 'to', 'planets'], required_words= ['planets'])
@@ -171,82 +174,96 @@ def check_all_messages(self, message: list[str]) -> str:
 
     best_match: str = max(highest_prob_list, key=highest_prob_list.get)
 
-    return unknown() if highest_prob_list[best_match] < 1 else best_match                  # End: check_all_messages
+    return long.R_UNKNOWN[random.randrange(3)] if highest_prob_list[best_match] < 1 else best_match                  # End: check_all_messages
 
 
-def split_response(self, response: str) -> list[str]:
+def split_response(response: str) -> list[str]:
     """Splits the user response
 
-    Args:
-        response: The response that has been returned as the closest match.
+    :param str response: The response that has been returned as the closest match.
 
-    Returns:
-        A list of the response terms.
+    :return: A list of the response terms.
+    :rtype: list[str]
 
     .. impl::
-        :id: SPLIT_RESPONSE
-        :implements: REQ_05
-
+        :id: RESPONSE_SPLIT_RESPONSE
+        :implements: REQ001
+        :tests: TTC001
     """
     return response.split("|")
 
-def display_fact(self, response: str) -> str:
-    """Displays a formatted string about a specific fact
+def set_image(file_name: str):
+    """Sets the image to the utils PLANET_IMAGE
 
-    Args:
-        response: The response that has been returned as the closest match.
-
-    Returns:
-        A formated string containing information about a specific fact
+    :param str file_name: The file name.
 
     .. impl::
-        :id: DISPLAY_FACT
-        :implements: REQ_06
-
+        :id: RESPONSE_SET_IMAGE
+        :implements: REQ001
+        :tests: TTC001
     """
-    split_response_string: list[str] = self.split_response(response)
+    utils.PLANET_IMAGE =  f'data\\images\\{file_name}.png'
+
+def display_fact(response: str) -> str:
+    """Displays a formatted string about a specific fact
+
+    :param str response: The response that has been returned as the closest match.
+
+    :return: A formated string containing information about a specific fact
+    :rtype: str
+
+    .. impl::
+        :id: RESPONSE_DISPLAY_FACT
+        :implements: REQ001
+        :tests: TTC001
+    """
+    split_response_string: list[str] = split_response(response)
     fact: str = split_response_string[2].strip()
     planet: str = split_response_string[3].strip()
     output: str = ""
     if fact == "all":           
         if planet == "all":     # Display all data for all planets
-            for item in self.planet_instance.get_all_planets():
+            for item in planet_instance.get_all_planets():
                 output += item.display_all_data()
+            set_image("planets\solarsystem")
         else:                   # Display all data for a specific planet
-            planets_output: list[str] = [p for p in self.planet_instance.get_all_planets() if p.name.lower() == planet.lower()]
+            planets_output: list[str] = [p for p in planet_instance.get_all_planets() if p.name.lower() == planet.lower()]
             output += planets_output[0].display_all_data()
+            set_image(f'planets\\{planet.lower()}')
     else:
         if planet == "all":     # Display a specific fact for all planets
-            for item in self.planet_instance.get_all_planets():
+            for item in planet_instance.get_all_planets():
                 output += item.display_fact(fact)
+            set_image("planets\solarsystem")
         else:                   # Display a specific fact for a specific planet 
-            planets_output: list[str] = self.planet_instance.get_planet(planet)
+            planets_output: list[str] = planet_instance.get_planet(planet)
             output += planets_output.display_fact(fact)
+            set_image(f'planets\\{planet.lower()}')
     return output
 
-def compare_fact(self, response: str) -> str:
+def compare_fact(response: str) -> str:
     """Displays a formatted table comparing all facts, or a specific fact.
 
-    Args:
-        response: The response that has been returned as the closest match.
+    :param str response: The response that has been returned as the closest match.
 
-    Returns:
-        A formated table containing information about a specific fact
+    :return: A formated table containing information about a specific fact
+    :rtype: table
 
     .. impl::
-        :id: COMPARE_FACT
-        :implements: REQ_11, REQ_12
-
+        :id: RESPONSE_COMPARE_FACT
+        :implements: REQ001
+        :tests: TTC001
     """
-    split_response_string: list[str] = self.split_response(response)
+    set_image("planets\solarsystem")
+    split_response_string: list[str] = split_response(response)
     fact: str = split_response_string[2].strip()
     planet_list: list = []
     if fact == "all":
-        for planet in self.planet_instance.get_all_planets():
+        for planet in planet_instance.get_all_planets():
                 planet_list.append(planet.export_data())
-        return f"\n{tabulate(planet_list, ['Name', 'Mass (kg)', 'Distance (km)', 'Satelites', 'Moons', 'Radius (km)'], tablefmt='grid')}"
+        return f"\n{tabulate(planet_list, ['Name', 'Mass\n(kg)', 'Distance\n(km)', 'Satellites', 'Moons', 'Radius\n(km)'], tablefmt='grid', maxcolwidths=[20,20,20,20,20,20])}"
     else:
-        for planet in self.planet_instance.get_all_planets():
+        for planet in planet_instance.get_all_planets():
                 if hasattr(planet, fact):
                     planet_list.append(planet.export_fact(fact))
         if fact in ['distance', 'radius']:
@@ -255,26 +272,63 @@ def compare_fact(self, response: str) -> str:
             unit = ' (kg)'
         else:
             unit = ''
-        return f"\n{tabulate(planet_list, ['Name', f"{fact}{unit}" ], tablefmt='grid')}"
+        return f"\n{tabulate(planet_list, ['Name', f"{fact}{unit}" ], tablefmt='grid', maxcolwidths=[None, 20])}"
+    
+def display_individual_response(response: str) -> str:
+    """Displays the individual response and set the appropriate image
 
-def response_parser(self, response: str) -> str:
+    :param str response: The response that has been returned as the closest match.
+
+    :return: A formated table containing information about a specific fact
+    :rtype: str
+
+    .. impl::
+        :id: RESPONSE_DISPLAY_INDIVIDUAL_RESPONSE
+        :implements: REQ001
+        :tests: TTC001
+    """
+    if response[10] == 'p':
+        set_image("planets\pluto")
+    elif response[10] == 's':
+        set_image("moons\deathstar")
+    elif response[10] == 'j':
+        set_image("moons\halfmoon")
+    return response[12:]
+
+def response_parser(response: str) -> str:
     """Parses the matched response to determine if the resonse is a direct one, if it
     requires facts to be displayed, or whether the data should be compared and tabulated.
 
-    Args:
-        response: The response that has been returned as the closest match.
+    :param str response: The response that has been returned as the closest match.
 
-    Returns:
-        A formated string containing the parsed response
+    :returns: A formated string containing the parsed response
+    :rtype: str
 
     .. impl::
-        :id: RESPONSE_PARSER
-        :implements: REQ_07
+        :id: RESPONSE_RESPONSE_PARSER
+        :implements: REQ001
+        :tests: TTC001
     """
     if "display" in response:
-        return self.display_fact(response)
+        return display_fact(response)
     if "response" in response:
-        return response[11:]
+        return display_individual_response(response)
     if "compare" in response:
-        return self.compare_fact(response)
+        return compare_fact(response)
+    
+def get_response(user_input: str) -> str:
+    """Get the response from the user coordinate the parsing of the message and create response.
 
+    :param str user_input: The user's query
+
+    :returns: A formated string containing the parsed response
+    :rtype: str
+
+    .. impl::
+        :id: RESPONSE_GET_RESPONSE
+        :implements: REQ001
+        :tests: TTC001
+    """
+    split_message = utils.sanitize_query(user_input)
+    response = check_all_messages(split_message)           # Gets the response key terms
+    return response_parser(response)
