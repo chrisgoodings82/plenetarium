@@ -7,5 +7,4 @@ src
    main
    scripts
    utilities
-   interfaces
    tests

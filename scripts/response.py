@@ -2,7 +2,6 @@ import random
 from tabulate import tabulate
 import utilities.long_responses as long
 import utilities.utils as utils
-import scripts.planet as planet
 import scripts.solar_system as planets
 
 planet_instance = planets.solar_system()

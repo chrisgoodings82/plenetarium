@@ -1,5 +1,5 @@
 #chat.py
-from scripts.solar_system import planets
+from scripts.solar_system import solar_system
 import scripts.response
 
 class chat:
@@ -19,7 +19,7 @@ class chat:
 
     def init_chat(self) -> None:
         """Initialises the chat instance with necessary attributes."""
-        self.planet_instance = planets()
+        self.planet_instance = solar_system()
         self.user_input = ""
         self.bot_response = ""
 

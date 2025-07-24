@@ -20,14 +20,6 @@ scripts.chat module
    :show-inheritance:
    :undoc-members:
 
-scripts.chat\_history module
-----------------------------
-
-.. automodule:: scripts.chat_history
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
 scripts.moon module
 -------------------
 

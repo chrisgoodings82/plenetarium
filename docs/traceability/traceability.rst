@@ -3,7 +3,7 @@ Traceability
 
 .. needtable:: Requirements Table
    :style: table
-   :columns: id;title
+   :columns: id;title; implements
 
    results = []
 
@@ -24,12 +24,12 @@ Traceability
             
 .. needtable:: Unimplemented Requirements Table
     :style: table
-    :columns: id;
+    :columns: id;req;tests;implements
 
     results = []
 
-    for need in needs.filter_types(['req']):
-        if not need['implements']:
+    for need in needs.filter_types(['impl']):
+        if need['tests']:
             results.append(need)
 
         

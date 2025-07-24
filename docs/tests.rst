@@ -20,14 +20,6 @@ tests.test\_chat module
    :show-inheritance:
    :undoc-members:
 
-tests.test\_chat\_history module
---------------------------------
-
-.. automodule:: tests.test_chat_history
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
 tests.test\_long\_response module
 ---------------------------------
 
