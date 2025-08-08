@@ -224,20 +224,20 @@ def display_fact(response: str) -> str:
         if planet == "all":     # Display all data for all planets
             for item in planet_instance.get_all_planets():
                 output += item.display_all_data()
-            set_image("planets\solarsystem")
+            set_image("planets/solarsystem")
         else:                   # Display all data for a specific planet
             planets_output: list[str] = [p for p in planet_instance.get_all_planets() if p.name.lower() == planet.lower()]
             output += planets_output[0].display_all_data()
-            set_image(f'planets\\{planet.lower()}')
+            set_image(f'planets/{planet.lower()}')
     else:
         if planet == "all":     # Display a specific fact for all planets
             for item in planet_instance.get_all_planets():
                 output += item.display_fact(fact)
-            set_image("planets\solarsystem")
+            set_image("planets/solarsystem")
         else:                   # Display a specific fact for a specific planet 
             planets_output: list[str] = planet_instance.get_planet(planet)
             output += planets_output.display_fact(fact)
-            set_image(f'planets\\{planet.lower()}')
+            set_image(f'planets/{planet.lower()}')
     return output
 
 def compare_fact(response: str) -> str:
@@ -253,7 +253,7 @@ def compare_fact(response: str) -> str:
         :implements: REQ001
         :tests: TTC001
     """
-    set_image("planets\solarsystem")
+    set_image("planets/solarsystem")
     split_response_string: list[str] = split_response(response)
     fact: str = split_response_string[2].strip()
     planet_list: list = []
@@ -287,11 +287,11 @@ def display_individual_response(response: str) -> str:
         :tests: TTC001
     """
     if response[10] == 'p':
-        set_image("planets\pluto")
+        set_image("planets/pluto")
     elif response[10] == 's':
-        set_image("moons\deathstar")
+        set_image("moons/deathstar")
     elif response[10] == 'j':
-        set_image("moons\halfmoon")
+        set_image("moons/halfmoon")
     return response[12:]
 
 def response_parser(response: str) -> str:

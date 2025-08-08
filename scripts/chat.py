@@ -34,7 +34,7 @@ class chat:
             :implements: REQ001
             :tests: TTC001
         """
-        return self.user_input
+        return str(self.user_input)
     
     def get_bot_response(self) -> str:
         """Gets the bot response.
@@ -50,7 +50,7 @@ class chat:
         return self.bot_response
 
     def get_response(self, user_input: str) -> None:
-        """Gets the processed response from the bot based on the user input, saving it to the bot_response attribute.
+        """Creates an instance of the response class, passes in the user's query to receive an appropriate response
 
         :param str user_input: The raw input received from the user.
 
@@ -59,8 +59,7 @@ class chat:
             :implements: REQ001
             :tests: TTC001
         """
-        response = scripts.response.response()
-        self.bot_response = response.get_response(user_input)
+        self.bot_response = scripts.response.get_response(user_input)
 
     def display_bot_response(self) -> str:
         """Gets the processed response from the bot based on the user input, saving it to the bot_response attribute.
