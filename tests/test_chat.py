@@ -8,7 +8,7 @@ Expectation = pytest.RaisesExc | does_not_raise
 chat_instance = chat.chat()
 
 @pytest.mark.parametrize(
-    ('input_n', 'expected'),
+    ('input', 'expected'),
     [
         ("This is a test String", "This is a test String"),
         ("", ""),
@@ -18,18 +18,18 @@ chat_instance = chat.chat()
         ("\n", "\n"),
     ]
 )
-def test_get_user_input(input_n, expected):
-    """Checks that the value stored in the user_inut member returns a string value
+def test_get_user_input(input, expected):
+    """Checks that the value stored in the user_ipnut member returns a string value
 
     .. test::
         :id: TTC003
         :tests: REQ001
     """
-    chat_instance.user_input = input_n
+    chat_instance.user_input = input
     assert chat_instance.get_user_input() == expected
 
 @pytest.mark.parametrize(
-    ('input_n', 'expected'),
+    ('input', 'expected'),
     (
         ("Tell me everything about all planets.", """The planet Mercury is positioned 58000000.0 km from the Sun. It has a mass of 3.3011e+23 kg, a radius of 2439.7 km. Mercury has 0 moons. 
         The planet Venus is positioned 108200000.0 km from the Sun. It has a mass of 4.8675e+24 kg, a radius of 6051.0 km. Venus has 0 moons. 
@@ -52,12 +52,12 @@ def test_get_user_input(input_n, expected):
         ("What are teh phases of teh moon?", "Full moon, Half moon, New moon...")
     )
 )
-def test_get_response(input_n, expected):
+def test_get_response(input, expected):
     """Checks that a random resonse can be generated
 
     .. test::
         :id: TTC001
         :tests: REQ003
     """
-    result = chat_instance.get_response(input_n)
+    result = chat_instance.get_response(input)
     assert result == expected
