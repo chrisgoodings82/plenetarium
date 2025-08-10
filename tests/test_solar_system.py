@@ -2,9 +2,6 @@ from contextlib import nullcontext as does_not_raise
 import pytest
 import scripts.solar_system as ss
 import scripts.planet as planet
-from utilities.long_responses import R_PLUTO
-import re
-import os
 
 
 Expectation = pytest.RaisesExc | does_not_raise
@@ -28,8 +25,8 @@ def test_get_all_planets_by_fact(input: str, expected: dict):
     """Checks that the value passed returns a dictionary of known facts for all planets
 
     .. test::
-        :id: TTC003
-        :tests: REQ001
+        :id: TTC008
+        :tests: REQ006
     """
     result = solar_system_instance.get_all_planets_by_fact(input)
     assert result == expected
@@ -46,8 +43,8 @@ def test_get_planet(input: str, expected: planet):
     """Checks that the value passed returns the correct planet object
 
     .. test::
-        :id: TTC003
-        :tests: REQ001
+        :id: TTC009
+        :tests: REQ007
     """
     result = solar_system_instance.get_planet(input)
     assert result == expected
@@ -57,8 +54,8 @@ def test_get_all_planets(self) -> list[planet.planet]:
     """Checks that the function returns a list of all planet objects
 
     .. test::
-        :id: TTC003
-        :tests: REQ001
+        :id: TTC010
+        :tests: REQ006
     """
     result = solar_system_instance.get_all_planets()
     assert result == [planet.planet("Mercury"),planet.planet("Venus"),planet.planet("Earth"),planet.planet("Mars"),planet.planet("Jupiter"),planet.planet("Saturn"),planet.planet("Uranus"),planet.planet("Neptune")]
@@ -68,7 +65,8 @@ def test_get_planet_names(self) -> list[str]:
     """Checks that the value passed in can be stripped of special characters and split atomically
 
     .. test::
-        :id: TTC003
-        :tests: REQ001
+        :id: TTC011
+        :tests: REQ005
     """
-    return [local_planet.name for local_planet in self.planets]
+    result = solar_system_instance.get_planet_names()
+    assert result == ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]

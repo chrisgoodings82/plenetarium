@@ -10,7 +10,7 @@ def test_unknown():
     """Checks that a random resonse can be generated
 
     .. test::
-        :id: TTC001
+        :id: TTC003
         :tests: REQ003
     """
     sample_strings = ['response | Could you please re-phrase that?',
@@ -27,8 +27,8 @@ def test_pluto():
     """Checks that an explaination for Pluto is provided
 
     .. test::
-        :id: TTC002
-        :tests: REQ005
+        :id: TTC004
+        :tests: REQ011
     """
     # Act
     result = long.R_PLUTO

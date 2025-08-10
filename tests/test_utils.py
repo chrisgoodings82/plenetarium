@@ -1,8 +1,6 @@
 from contextlib import nullcontext as does_not_raise
 import pytest
 import utilities.utils as utils
-from utilities.long_responses import R_PLUTO
-import re
 import os
 
 
@@ -26,8 +24,8 @@ def test_sanitize_query(input: str, expected: list[str]):
     """Checks that the value passed in can be stripped of special characters and split atomically
 
     .. test::
-        :id: TTC003
-        :tests: REQ001
+        :id: TTC012
+        :tests: REQ012
     """
     result = utils.sanitize_query(input)
     assert result == expected
@@ -43,7 +41,7 @@ def test_get_absolute_path(input: str) -> str:
     """Checks that the filepath passed incan be converted to an absolute file path
 
     .. test::
-        :id: TTC003
+        :id: TTC013
         :tests: REQ001
     """
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))

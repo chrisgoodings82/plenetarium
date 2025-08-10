@@ -19,26 +19,29 @@ def message_probability(user_message: list[str], recognised_words: list[str], si
 
         .. impl::
             :id: RESPONSE_MESSAGE_PROBABILITY
-            :implements: REQ001
+            :implements: REQ005, REQ002, REQ003, REQ004
             :tests: TTC001
         """
-        message_certainty: int = 0
-        has_required_words: bool = True
+        try:
+            message_certainty: int = 0
+            has_required_words: bool = True
 
-        for word in user_message:
-            if word in recognised_words:
-                message_certainty += 1
+            for word in user_message:
+                if word in recognised_words:
+                    message_certainty += 1
 
-        percentage: float = float(message_certainty) / float(len(recognised_words))
+            percentage: float = float(message_certainty) / float(len(recognised_words))
 
-        for word in required_words:
-            if word not in user_message:
-                has_required_words = False
-                break
-        
-        if has_required_words or single_response:
-            return int(percentage*100)
-        else:
+            for word in required_words:
+                if word not in user_message:
+                    has_required_words = False
+                    break
+            
+            if has_required_words or single_response:
+                return int(percentage*100)
+            else:
+                return 0
+        except ZeroDivisionError:
             return 0
     
 def check_all_messages(message: list[str]) -> str:
@@ -54,7 +57,7 @@ def check_all_messages(message: list[str]) -> str:
 
         .. impl::
             :id: RESPONSE_CHECK_ALL_MESSAGES
-            :implements: REQ001
+            :implements: REQ005, REQ002, REQ003, REQ004, REQ012
             :tests: TTC001
     """    
     highest_prob_list: dict = {}
@@ -70,7 +73,7 @@ def check_all_messages(message: list[str]) -> str:
 
         .. impl::
             :id: RESPONSE_RESPONSE
-            :implements: REQ001
+            :implements: REQ005, REQ002, REQ003, REQ004
             :tests: TTC001
     """   
         nonlocal highest_prob_list
@@ -186,7 +189,7 @@ def split_response(response: str) -> list[str]:
 
     .. impl::
         :id: RESPONSE_SPLIT_RESPONSE
-        :implements: REQ001
+        :implements: REQ006
         :tests: TTC001
     """
     return response.split("|")
@@ -198,8 +201,6 @@ def set_image(file_name: str):
 
     .. impl::
         :id: RESPONSE_SET_IMAGE
-        :implements: REQ001
-        :tests: TTC001
     """
     utils.PLANET_IMAGE =  f'data\\images\\{file_name}.png'
 
@@ -213,32 +214,36 @@ def display_fact(response: str) -> str:
 
     .. impl::
         :id: RESPONSE_DISPLAY_FACT
-        :implements: REQ001
+        :implements: REQ005, REQ002, REQ003, REQ004, REQ007, REQ008, REQ009
         :tests: TTC001
     """
-    split_response_string: list[str] = split_response(response)
-    fact: str = split_response_string[2].strip()
-    planet: str = split_response_string[3].strip()
-    output: str = ""
-    if fact == "all":           
-        if planet == "all":     # Display all data for all planets
-            for item in planet_instance.get_all_planets():
-                output += item.display_all_data()
-            set_image("planets/solarsystem")
-        else:                   # Display all data for a specific planet
-            planets_output: list[str] = [p for p in planet_instance.get_all_planets() if p.name.lower() == planet.lower()]
-            output += planets_output[0].display_all_data()
-            set_image(f'planets/{planet.lower()}')
-    else:
-        if planet == "all":     # Display a specific fact for all planets
-            for item in planet_instance.get_all_planets():
-                output += item.display_fact(fact)
-            set_image("planets/solarsystem")
-        else:                   # Display a specific fact for a specific planet 
-            planets_output: list[str] = planet_instance.get_planet(planet)
-            output += planets_output.display_fact(fact)
-            set_image(f'planets/{planet.lower()}')
-    return output
+    try:
+        split_response_string: list[str] = split_response(response)
+        fact: str = split_response_string[2].strip()
+        planet: str = split_response_string[3].strip()
+        output: str = ""
+        if fact == "all":           
+            if planet == "all":     # Display all data for all planets
+                for item in planet_instance.get_all_planets():
+                    output += item.display_all_data()
+                set_image("planets/solarsystem")
+            else:                   # Display all data for a specific planet
+                planets_output: list[str] = [p for p in planet_instance.get_all_planets() if p.name.lower() == planet.lower()]
+                output += planets_output[0].display_all_data()
+                set_image(f'planets/{planet.lower()}')
+        else:
+            if planet == "all":     # Display a specific fact for all planets
+                for item in planet_instance.get_all_planets():
+                    output += item.display_fact(fact)
+                set_image("planets/solarsystem")
+            else:                   # Display a specific fact for a specific planet 
+                planets_output: list[str] = planet_instance.get_planet(planet)
+                output += planets_output.display_fact(fact)
+                set_image(f'planets/{planet.lower()}')
+        return output
+    except Exception as e:
+        print(f"Error displaying fact: {e}")
+        return long.R_UNKNOWN[random.randrange(3)]
 
 def compare_fact(response: str) -> str:
     """Displays a formatted table comparing all facts, or a specific fact.
@@ -250,28 +255,32 @@ def compare_fact(response: str) -> str:
 
     .. impl::
         :id: RESPONSE_COMPARE_FACT
-        :implements: REQ001
+        :implements: REQ010, REQ009
         :tests: TTC001
     """
-    set_image("planets/solarsystem")
-    split_response_string: list[str] = split_response(response)
-    fact: str = split_response_string[2].strip()
-    planet_list: list = []
-    if fact == "all":
-        for planet in planet_instance.get_all_planets():
-                planet_list.append(planet.export_data())
-        return f"\n{tabulate(planet_list, ['Name', 'Mass\n(kg)', 'Distance\n(km)', 'Satellites', 'Moons', 'Radius\n(km)'], tablefmt='grid', maxcolwidths=[20,20,20,20,20,20])}"
-    else:
-        for planet in planet_instance.get_all_planets():
-                if hasattr(planet, fact):
-                    planet_list.append(planet.export_fact(fact))
-        if fact in ['distance', 'radius']:
-            unit = ' (km)'
-        elif fact == 'mass':
-            unit = ' (kg)'
+    try:
+        set_image("planets/solarsystem")
+        split_response_string: list[str] = split_response(response)
+        fact: str = split_response_string[2].strip()
+        planet_list: list = []
+        if fact == "all":
+            for planet in planet_instance.get_all_planets():
+                    planet_list.append(planet.export_data())
+            return f"\n{tabulate(planet_list, ['Name', 'Mass\n(kg)', 'Distance\n(km)', 'Satellites', 'Moons', 'Radius\n(km)'], tablefmt='grid', maxcolwidths=[20,20,20,20,20,20])}"
         else:
-            unit = ''
-        return f"\n{tabulate(planet_list, ['Name', f"{fact}{unit}" ], tablefmt='grid', maxcolwidths=[None, 20])}"
+            for planet in planet_instance.get_all_planets():
+                    if hasattr(planet, fact):
+                        planet_list.append(planet.export_fact(fact))
+            if fact in ['distance', 'radius']:
+                unit = ' (km)'
+            elif fact == 'mass':
+                unit = ' (kg)'
+            else:
+                unit = ''
+            return f"\n{tabulate(planet_list, ['Name', f"{fact}{unit}" ], tablefmt='grid', maxcolwidths=[None, 20])}"
+    except Exception as e:
+        print(f"Error comparing fact: {e}")
+        return long.R_UNKNOWN[random.randrange(3)]
     
 def display_individual_response(response: str) -> str:
     """Displays the individual response and set the appropriate image
@@ -283,16 +292,19 @@ def display_individual_response(response: str) -> str:
 
     .. impl::
         :id: RESPONSE_DISPLAY_INDIVIDUAL_RESPONSE
-        :implements: REQ001
-        :tests: TTC001
+        :implements: REQ002, REQ003, REQ004
+        :tests: TTC002
     """
-    if response[10] == 'p':
-        set_image("planets/pluto")
-    elif response[10] == 's':
-        set_image("moons/deathstar")
-    elif response[10] == 'j':
-        set_image("moons/halfmoon")
-    return response[12:]
+    try:
+        if response[10] == 'p':
+            set_image("planets/pluto")
+        elif response[10] == 's':
+            set_image("moons/deathstar")
+        elif response[10] == 'j':
+            set_image("moons/halfmoon")
+        return response[12:]
+    except Exception as e:
+        print(f"Error displaying individual response: {e}")
 
 def response_parser(response: str) -> str:
     """Parses the matched response to determine if the resonse is a direct one, if it
@@ -305,7 +317,7 @@ def response_parser(response: str) -> str:
 
     .. impl::
         :id: RESPONSE_RESPONSE_PARSER
-        :implements: REQ001
+        :implements: REQ002, REQ003, REQ004, REQ011
         :tests: TTC001
     """
     if "display" in response:
@@ -325,7 +337,7 @@ def get_response(user_input: str) -> str:
 
     .. impl::
         :id: RESPONSE_GET_RESPONSE
-        :implements: REQ001
+        :implements: REQ002, REQ003, REQ004, REQ005, REQ006, REQ007, REQ008, REQ009, REQ010
         :tests: TTC001
     """
     split_message = utils.sanitize_query(user_input)

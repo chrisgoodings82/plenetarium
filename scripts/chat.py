@@ -31,7 +31,7 @@ class chat:
 
         .. impl::
             :id: CHT_GET_USER_INPUT
-            :implements: REQ001
+            :implements: REQ001, REQ002
             :tests: TTC001
         """
         return str(self.user_input)
@@ -44,7 +44,7 @@ class chat:
 
         .. impl::
             :id: CHT_GET_BOT_RESPONSE
-            :implements: REQ001
+            :implements: REQ002, REQ003, REQ004
             :tests: TTC001
         """
         return self.bot_response
@@ -56,7 +56,7 @@ class chat:
 
         .. impl::
             :id: CHT_GET_RESPONSE
-            :implements: REQ001
+            :implements: REQ002, REQ003, REQ004
             :tests: TTC001
         """
         self.bot_response = scripts.response.get_response(user_input)
@@ -66,7 +66,7 @@ class chat:
 
         .. impl::
             :id: CHAT_GET_RESPONSE
-            :implements: REQ001
+            :implements: REQ002, REQ003, REQ004
             :tests: TTC001
         """
         return self.bot_response

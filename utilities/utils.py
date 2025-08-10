@@ -77,6 +77,10 @@ def get_absolute_path(filepath: str) -> str:
         :implements: REQ001
         :tests: TTS001
     """
-    ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-    ROOT_DIR = ROOT_DIR.replace('utilities', filepath)
-    return ROOT_DIR
+    try:
+        ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+        ROOT_DIR = ROOT_DIR.replace('utilities', filepath)
+        return ROOT_DIR
+    except Exception as e:
+        print(f"Error getting absolute path: {e}")
+        return ""

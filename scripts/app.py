@@ -34,7 +34,7 @@ class app:
 
         .. impl::
             :id: APP_SUBMIT_CHAT
-            :implements: REQ001
+            :implements: REQ001, REQ002
             :tests: TTC001
         """
         # Get user input
@@ -52,9 +52,6 @@ class app:
         self.lbl_image_holder.image = self.img_main_display 
         self.window.mainloop()
 
-        # Update chat history
-        self.chat_instance.update_chat_history({'user': user_input, 'bot': bot_response})
-
     def key_return(self, event):
         """Calls the submit chat function when the enter key is pressed.
 
@@ -62,7 +59,7 @@ class app:
 
         :impl: 
             :id: APP_RETURN_KEY
-            :implements: REQ001
+            :implements: REQ001, REQ002
             :tests: TTC001
         """
         self.submit_chat()
@@ -74,8 +71,6 @@ class app:
 
         .. impl::
             :id: APP_SETUP
-            :implements: REQ001
-            :tests: TTC001
         """
         # Menu
         menubar = Menu(parent)
@@ -129,7 +124,7 @@ class app:
 
         .. impl::
             :id: APP_INIT_APP
-            :implements: REQ001
+            :implements: REQ004
             :tests: TTC001
         """
         self.chat_instance = chat()
@@ -154,9 +149,14 @@ class app:
         except:
             pass
 
-        ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-        ROOT_DIR = ROOT_DIR.replace('scripts', 'data')
-        self.window.iconbitmap(utils.get_absolute_path('/data/images/icons/favicon.ico'))
+        try:
+            ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+            ROOT_DIR = ROOT_DIR.replace('scripts', 'data')
+            self.window.iconbitmap(utils.get_absolute_path('/data/images/icons/favicon.ico'))
 
-        self.setup(self.window)
-        self.window.mainloop()
+            self.setup(self.window)
+            self.window.mainloop()
+        except Exception as e:
+            print(f"Error initializing app: {e}")
+            self.window.destroy()
+            raise e

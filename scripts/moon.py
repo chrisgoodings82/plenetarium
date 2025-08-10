@@ -10,8 +10,6 @@ class moon:
 
         .. impl::
             :id: MOON_INIT
-            :implements: REQ001
-            :tests: TTC001
         """
         ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
         ROOT_DIR = ROOT_DIR.replace('scripts', 'data')

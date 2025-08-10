@@ -22,7 +22,7 @@ def test_get_user_input(input, expected):
     """Checks that the value stored in the user_ipnut member returns a string value
 
     .. test::
-        :id: TTC003
+        :id: TTC001
         :tests: REQ001
     """
     chat_instance.user_input = input
@@ -56,7 +56,7 @@ def test_get_response(input, expected):
     """Checks that a random resonse can be generated
 
     .. test::
-        :id: TTC001
+        :id: TTC002
         :tests: REQ003
     """
     result = chat_instance.get_response(input)

@@ -11,7 +11,7 @@ Requirements
    :id: REQ002
    :tags: Must Have
 
-   The user sh7ould be able to greet the chat-bot and receive a meaningful response.
+   The user should be able to greet the chat-bot and receive a meaningful response.
 
 .. req:: Unknown responses
    :id: REQ003

@@ -12,8 +12,6 @@ class planet:
 
         .. impl::
             :id: PLANET_INIT
-            :implements: REQ001
-            :tests: TTC001
         """
         ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
         ROOT_DIR = ROOT_DIR.replace('scripts', 'data')
@@ -41,8 +39,6 @@ class planet:
 
         .. impl::
             :id: PLANET_MOONS_TO_STRING
-            :implements: REQ001
-            :tests: TTC001
         """
         if len(self.moons) == 0:
             return ""
@@ -62,7 +58,7 @@ class planet:
 
         .. impl::
             :id: PLANET_DISPLAY_ALL_DATA
-            :implements: REQ001
+            :implements: REQ005
             :tests: TTC001
         """
         output: str = f"The planet {self.name} is positioned {self.distance} km from the Sun. It has a mass of {self.mass} kg, a radius of {self.radius} km. "
@@ -87,7 +83,7 @@ class planet:
 
         .. impl::
             :id: PLANET_DISPLAY_PLANET_FACT
-            :implements: REQ001
+            :implements: REQ006
             :tests: TTC001
         """
         initial: str = f"The planet {self.name} "
@@ -112,7 +108,7 @@ class planet:
 
         .. impl::
             :id: PLANET_EXPORT_DATA
-            :implements: REQ001
+            :implements: REQ006
             :tests: TTC001
         """
         return [self.name, self. mass, self.distance, self.satellites, self.moons_to_string(), self.radius, self.image]
@@ -127,7 +123,7 @@ class planet:
 
         .. impl::
             :id: PLANET_EXPORT_PLANET_FACT
-            :implements: REQ001
+            :implements: REQ007, REQ008
             :tests: TTC001
         """
         if hasattr(self, fact):

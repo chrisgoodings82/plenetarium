@@ -61,7 +61,7 @@ class solar_system:
 
         .. impl::
             :id: SOLAR_SYSTEM_GET_ALL_PLANETS_BY_FACT
-            :implements: REQ001
+            :implements: REQ005, REQ006
             :tests: TTC001
         """
         planet_list: dict = {}
@@ -85,7 +85,7 @@ class solar_system:
 
         .. impl::
             :id: SOLAR_SYSTEM_GET_PLANET
-            :implements: REQ001
+            :implements: REQ007
             :tests: TTC001
         """
         for local_planet in self.planets:
@@ -101,7 +101,7 @@ class solar_system:
         
         .. impl::
             :id: SOLAR_SYSTEM_GET_ALL_PLANETS
-            :implements: REQ001
+            :implements: REQ006
             :tests: TTC001
         """
         return self.planets
@@ -115,8 +115,6 @@ class solar_system:
 
         .. impl::
             :id: SOLAR_SYSTEM_GET_PLANET_NAMES
-            :implements: REQ001
-            :tests: TTC001
         """
         return [local_planet.name for local_planet in self.planets]
     
